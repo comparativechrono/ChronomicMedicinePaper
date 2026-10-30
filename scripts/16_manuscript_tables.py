@@ -41,39 +41,36 @@ def ffold(x: float) -> str:
 
 E = pd.read_csv(TABLES / "enrichment_all.tsv", sep="\t")
 P = E[E.analysis == "primary"].set_index("set_id")
-C = E[E.analysis == "constraint_matched"].set_index("set_id")
-C4 = E[E.analysis == "constraint_matched_v4"].set_index("set_id")
 M = pd.read_csv(TABLES / "magma_genesets.tsv", sep="\t")
 Mm = M[M.model == "marginal"].set_index("set_id").P
-Mc = M[M.model == "cond_LOEUF"].set_index("set_id").P
 sizes = pd.read_csv(INTERIM / "genesets" / "geneset_summary.tsv", sep="\t").set_index("set_id").n_genes
 
 ROWS = [
     ("Mendelian disease genes", [("MEND_ANY", "Any Mendelian (OMIM or Orphanet)"), ("MEND_CLINGEN", "ClinGen moderate–definitive"),
                                  ("INH_AD", "Autosomal dominant disorders"), ("INH_AR", "Autosomal recessive disorders")]),
-    ("Controls", [("LOEUF_D1", "LoF-constrained decile (gnomAD v2.1.1)"), ("GO_CIRCADIAN", "GO: circadian rhythm (positive control)")]),
+    ("Positive control", [("GO_CIRCADIAN", "GO: circadian rhythm")]),
     ("Pre-specified phenotypes", [("HPO_HP0002360", "Sleep disturbance"),
                                  ("HPO_SLEEP_noNDD", "Sleep disturbance, excluding neurodevelopmental genes"),
                                  ("HPO_CIRCADIAN", "Sleep–wake cycle disturbance or abnormal melatonin"),
                                  ("HPO_HP0001657", "Prolonged QT interval"), ("HPO_HP0001639", "Hypertrophic cardiomyopathy"),
                                  ("HPO_HP0004431", "Reduced circulating complement (HPO)"),
-                                 ("HPO_HP0001263", "Global developmental delay")]),
+                                 ("HPO_HP0001263", "Global developmental delay"),
+                                 ("HPO_HP0001249", "Intellectual disability"), ("HPO_HP0001250", "Seizure")]),
     ("Post hoc", [("EXP_INTD_MONOAMINE", "Monoamine neurotransmitter disorders (12 genes)"),
                   ("EXP_CSF_HVA", "Decreased CSF homovanillic acid"),
                   ("CUR_COMPLEMENT_IUIS", "Complement deficiency genes (IUIS)")]),
     ("Rhythmic expression", [("RHY_MOUSE_GE3", "Rhythmic in ≥3 mouse tissues"), ("RHY_GTEX_DAYNIGHT", "Human day–night (GTEx)")]),
 ]
-lines = ["| Gene set | Genes | Primary null: loci obs/exp (fold); p | Constraint-matched null (gnomAD v2.1.1): loci obs/exp (fold); p | gnomAD v4.1 null: p | MAGMA p: marginal; constraint-conditioned |",
-         "|:" + "-" * 29 + "|" + "-" * 8 + ":|:" + "-" * 22 + "|:" + "-" * 22 + "|:" + "-" * 10 + "|:" + "-" * 16 + "|"]
+lines = ["| Gene set | Genes | Loci obs/exp (fold) | p | q | MAGMA p |",
+         "|:" + "-" * 30 + "|" + "-" * 7 + ":|:" + "-" * 16 + "|:" + "-" * 10 + "|:" + "-" * 10 + "|:" + "-" * 9 + "|"]
 for grp, sets in ROWS:
     lines.append(f"| ***{grp}*** | | | | | |")
     for sid, lab in sets:
-        p, c, c4 = P.loc[sid], C.loc[sid], C4.loc[sid]
+        p = P.loc[sid]
+        q = "–" if grp == "Post hoc" else fp(p.q_analytic_within_family)   # q is not meaningful after selection
         lines.append(
-            f"| {lab} | {int(sizes[sid]):,} | {int(p.obs_loci)}/{fexp(p.exp_loci_analytic)} ({ffold(p.fold_analytic)}); {fp(p.p_enrich_analytic)} "
-            f"| {int(c.obs_loci)}/{fexp(c.exp_loci_analytic)} ({ffold(c.fold_analytic)}); {fp(c.p_enrich_analytic)} "
-            f"| {fp(c4.p_enrich_analytic)} "
-            f"| {fp(Mm.get(sid, np.nan), True)}; {fp(Mc.get(sid, np.nan), True) if sid != 'LOEUF_D1' else '–'} |")
+            f"| {lab} | {int(sizes[sid]):,} | {int(p.obs_loci)}/{fexp(p.exp_loci_analytic)} ({ffold(p.fold_analytic)}) "
+            f"| {fp(p.p_enrich_analytic)} | {q} | {fp(Mm.get(sid, np.nan), True)} |")
 (OUT / "table1.md").write_text("\n".join(lines) + "\n")
 
 # ---------------------------------------------------------------- Table 2

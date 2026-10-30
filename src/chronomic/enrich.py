@@ -19,7 +19,7 @@ def _gbins(n: np.ndarray) -> np.ndarray:
 
 
 def match_candidates(obs: pd.DataFrame, pool: pd.DataFrame, ngene_col: str, q: int = 10,
-                     min_candidates: int = 50, extra: dict | None = None) -> tuple[list[np.ndarray], list[str]]:
+                     min_candidates: int = 50) -> tuple[list[np.ndarray], list[str]]:
     """For every observed locus, the pool indices with matching MAF/LD/gene-count/distance bins.
 
     Gene count is always matched; the other features are relaxed in turn
@@ -34,9 +34,6 @@ def match_candidates(obs: pd.DataFrame, pool: pd.DataFrame, ngene_col: str, q: i
         "genes": (_gbins(pool[ngene_col].values), _gbins(obs[ngene_col].values)),
     }
     always = ("genes",)
-    for name, (pv, ov) in (extra or {}).items():  # categorical features that are always matched
-        feats[name] = (np.asarray(pv, dtype=np.int64), np.asarray(ov, dtype=np.int64))
-        always = always + (name,)
     schemes = [always + ("maf", "buddies", "dist"), always + ("maf", "buddies"), always + ("maf",), always]
     keys = {}
     for sch in schemes:

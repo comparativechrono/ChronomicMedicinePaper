@@ -103,17 +103,13 @@ FILES = [
     ("rhythm", "rhythm", "GPL6246.annot.gz", "https://ftp.ncbi.nlm.nih.gov/geo/platforms/GPL6nnn/GPL6246/annot/GPL6246.annot.gz"),
     ("rhythm", "rhythm", "HOM_MouseHumanSequence.rpt",
      "https://www.informatics.jax.org/downloads/reports/HOM_MouseHumanSequence.rpt"),
-    # --- constraint (peer-reviewed gnomAD v2.1.1, Karczewski et al. 2020; v4.1 used in sensitivity) ---
+    # --- LoF constraint (gnomAD v2.1.1, Karczewski et al. 2020): descriptive annotation of candidate genes ---
     ("gnomad", "gnomad", "gnomad.v2.1.1.lof_metrics.by_gene.txt.bgz",
      "https://storage.googleapis.com/gcp-public-data--gnomad/release/2.1.1/constraint/gnomad.v2.1.1.lof_metrics.by_gene.txt.bgz"),
     # --- QT interval GWAS for colocalisation at KCNH2 (Hoffmann et al. 2022 Genetics; GERA+UKB+PAGE) ---
     ("qt", "qt", "GCST90165291_QT_buildGRCh37.tsv.gz",
      "https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/GCST90165001-GCST90166000/GCST90165291/"
      "GCST90165291_buildGRCh37.tsv.gz"),
-    # --- constraint ---
-    ("gnomad", "gnomad", "gnomad.v4.1.constraint_metrics.tsv",
-     "https://storage.googleapis.com/gcp-public-data--gnomad/release/4.1/constraint/"
-     "gnomad.v4.1.constraint_metrics.tsv"),
 ]
 
 

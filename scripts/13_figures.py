@@ -2,8 +2,8 @@
 """Publication figures (PDF + 300-dpi PNG) in results/figures/.
 
 Fig 1  Study design and the chronomic medicine framework
-Fig 2  Locus-level enrichment: (A) Mendelian, pre-specified, post hoc and control gene sets under the
-       primary and constraint-matched nulls; (B) HPO organ systems
+Fig 2  Locus-level enrichment against matched null loci, with gene-level (MAGMA) p-values: (A) Mendelian,
+       pre-specified, post hoc and control gene sets; (B) HPO organ systems
 Fig 5  Rare/common/Mendelian convergence: (A) exome burden signal by gene group;
        (B) common-variant (MAGMA) vs rare-variant (burden) gene evidence
 Fig 3  Chronomic candidate genes: evidence grid
@@ -87,11 +87,12 @@ def fig1():
         fc="#eefaf5", ec=S3)
 
     box(35.8, 30.5, 30, 29, "Locus-level enrichment",
-        ["null loci matched on MAF, LD,", "gene count, distance (± constraint)", "10,000 permutations; exact",
-         "Poisson-binomial p-values", "sensitivity: r² thresholds,", "MHC/17q21 removed, nearest gene,",
-         "gnomAD v4.1 constraint"], fc="#ffffff", ec=MUTED)
+        ["null loci matched on MAF, LD,", "gene count and distance", "10,000 permutations; exact",
+         "Poisson-binomial p-values", "relative tests vs Mendelian, NDD", "and dominant disease genes",
+         "sensitivity: r² thresholds,", "MHC/17q21 removed, nearest gene"],
+        fc="#ffffff", ec=MUTED)
     box(35.8, 14.5, 30, 13, "Gene-level tests",
-        ["MAGMA competitive gene sets,", "conditioned on constraint,", "NDD or Mendelian status"], fc="#ffffff", ec=MUTED)
+        ["MAGMA competitive gene sets,", "marginal and conditioned on", "NDD or Mendelian genes"], fc="#ffffff", ec=MUTED)
     box(35.8, 0.5, 30, 11, "Convergence",
         ["exome burden vs matched genes", "conditional coloc at KCNH2 (QT)"], fc="#ffffff", ec=MUTED)
 
@@ -101,7 +102,7 @@ def fig1():
          "Question: do chronotype loci", "converge on Mendelian disease", "genes, and for which phenotypes?"],
         fc="#f6f6f4", ec=INK2)
     box(70.3, 0.5, 29.4, 22, "Outputs",
-        ["enrichment under two nulls", "candidate-gene catalogue", "(Mendelian genes at loci,", "with gene-level evidence)",
+        ["locus- and gene-level enrichment", "candidate-gene catalogue", "(Mendelian genes at loci,", "with gene-level evidence)",
          "open, version-pinned pipeline"], fc="#f6f6f4", ec=INK2)
     arrow(31.8, 50, 35.7, 50)
     arrow(31.8, 27, 35.7, 40)
@@ -118,7 +119,7 @@ ROWS = [
     ("Mendelian disease genes", [("MEND_ANY", "Any Mendelian (OMIM or Orphanet)"), ("MEND_OMIM", "OMIM"),
                                  ("MEND_ORPHA", "Orphanet (assessed)"), ("MEND_CLINGEN", "ClinGen moderate–definitive"),
                                  ("INH_AD", "Autosomal dominant"), ("INH_AR", "Autosomal recessive")]),
-    ("Controls", [("LOEUF_D1", "LoF-constrained decile (gnomAD)"), ("GO_CIRCADIAN", "GO: circadian rhythm")]),
+    ("Positive control", [("GO_CIRCADIAN", "GO: circadian rhythm")]),
     ("Pre-specified phenotypes", [("HPO_HP0002360", "Sleep disturbance"),
                                  ("HPO_SLEEP_noNDD", "  without neurodevelopmental features"),
                                  ("HPO_CIRCADIAN", "Sleep–wake cycle / melatonin"),
@@ -140,8 +141,14 @@ ROWS = [
 
 def fig2():
     P = E[E.analysis == "primary"].set_index("set_id")
-    C = E[E.analysis == "constraint_matched"].set_index("set_id")
-    C4 = E[E.analysis == "constraint_matched_v4"].set_index("set_id")
+    MG = pd.read_csv(TABLES / "magma_genesets.tsv", sep="\t")
+    Mm = MG[MG.model == "marginal"].set_index("set_id").P
+
+    def fmt_mp(sid):
+        p = Mm.get(sid, np.nan)
+        return "–" if p != p else fmt_p(p)
+
+    COLS = ((1.04, "obs / exp\nloci"), (1.32, "p, matched\nnull loci"), (1.62, "MAGMA p\n(gene level)"))
     items = []
     for grp, sets in ROWS:
         items.append(("hdr", grp, None))
@@ -158,61 +165,55 @@ def fig2():
             ax.text(-0.98, yi, lab, transform=tr, ha="left", va="center", fontsize=7.2, weight="bold", color=INK)
             continue
         ax.text(-0.94, yi, lab, transform=tr, ha="left", va="center", fontsize=6.8, color=INK)
-        for df, col, mk, dy in ((P, S1, "o", 0.17), (C, S2, "D", -0.17)):
-            r = df.loc[sid]
-            f = r.fold_analytic if r.obs_loci > 0 else lo * 1.08
-            sig = r.q_analytic_within_family < 0.05
-            ax.plot([f], [yi + dy], marker=mk, ms=4.4 if mk == "o" else 3.8, mfc=col if sig else SURF, mec=col,
-                    mew=1.1, ls="none", zorder=3, clip_on=False)
-        if P.loc[sid].obs_loci == 0:
+        r = P.loc[sid]
+        f = r.fold_analytic if r.obs_loci > 0 else lo * 1.08
+        sig = r.q_analytic_within_family < 0.05
+        ax.plot([f], [yi], marker="o", ms=4.4, mfc=S1 if sig else SURF, mec=S1, mew=1.1, ls="none", zorder=3,
+                clip_on=False)
+        if r.obs_loci == 0:
             ax.text(lo * 1.35, yi, "0 observed", fontsize=6, color=INK2, va="center")
-        ev = P.loc[sid].exp_loci_analytic
-        ax.text(1.04, yi, f"{int(P.loc[sid].obs_loci)} / {ev:.2f}" if ev < 1 else f"{int(P.loc[sid].obs_loci)} / {ev:.1f}", transform=tr,
+        ev = r.exp_loci_analytic
+        ax.text(1.04, yi, f"{int(r.obs_loci)} / {ev:.2f}" if ev < 1 else f"{int(r.obs_loci)} / {ev:.1f}", transform=tr,
                 fontsize=6.5, color=INK2, va="center")
-        ax.text(1.32, yi, fmt_p(P.loc[sid].p_enrich_analytic), transform=tr, fontsize=6.5, color=INK2, va="center")
-        ax.text(1.62, yi, fmt_p(C.loc[sid].p_enrich_analytic), transform=tr, fontsize=6.5, color=INK2, va="center")
-        ax.text(1.92, yi, fmt_p(C4.loc[sid].p_enrich_analytic), transform=tr, fontsize=6.5, color=INK2, va="center")
-    for x, s in ((1.04, "obs / exp\nloci"), (1.32, "p, primary\nnull"), (1.62, "gnomAD\nv2.1.1"),
-                 (1.92, "gnomAD\nv4.1")):
+        ax.text(1.32, yi, fmt_p(r.p_enrich_analytic), transform=tr, fontsize=6.5, color=INK2, va="center")
+        ax.text(1.62, yi, fmt_mp(sid), transform=tr, fontsize=6.5, color=INK2, va="center")
+    for x, s in COLS:
         ax.text(x, n - 0.2, s, transform=tr, fontsize=6.5, color=INK, weight="bold", va="bottom")
-    ax.text(1.62, n + 1.55, "p, constraint-matched null", transform=tr, fontsize=6.5, color=INK, weight="bold",
-            va="bottom")
-    ax.plot([1.62, 2.12], [n + 1.45, n + 1.45], transform=tr, color=MUTED, lw=0.6, clip_on=False)
     ax.text(-0.98, n + 1.6, "A", transform=tr, fontsize=10, weight="bold", va="bottom")
     ax.axvline(1, color=MUTED, lw=0.7, ls=(0, (3, 2)), zorder=1)
     ax.set_yticks([]); ax.spines["left"].set_visible(False)
     ax.set_xticks([0.5, 1, 2, 5, 10, 50, 200]); ax.set_xticklabels(["0.5", "1", "2", "5", "10", "50", "200"])
     ax.set_xlabel("Fold enrichment (observed / expected loci)")
     ax.grid(axis="x", color=GRID, lw=0.5); ax.set_axisbelow(True)
-    h1 = ax.plot([], [], "o", mfc=S1, mec=S1, ms=4.4, label="primary null (MAF, LD, gene count, distance)")[0]
-    h2 = ax.plot([], [], "D", mfc=S2, mec=S2, ms=3.8, label="constraint-matched null (+ gnomAD v2.1.1 LOEUF class)")[0]
-    h3 = ax.plot([], [], "o", mfc=SURF, mec=INK2, ms=4.4, label="open marker: FDR q ≥ 0.05 within set family")[0]
-    ax.legend(handles=[h1, h2, h3], loc="upper left", bbox_to_anchor=(-1.0, -0.055), fontsize=6.5, ncol=1,
-              handletextpad=0.3)
+    h1 = ax.plot([], [], "o", mfc=S1, mec=S1, ms=4.4, label="FDR q < 0.05 within set family")[0]
+    h3 = ax.plot([], [], "o", mfc=SURF, mec=S1, ms=4.4, label="FDR q ≥ 0.05")[0]
+    ax.legend(handles=[h1, h3], loc="upper left", bbox_to_anchor=(-1.0, -0.055), fontsize=6.5, ncol=1,
+              handletextpad=0.3, title="Null loci matched on MAF, LD, gene count and distance",
+              title_fontsize=6.5, alignment="left")
 
     axb = fig.add_axes([0.33, 0.04, 0.30, 0.25])
     Ps = E[(E.analysis == "primary") & (E.family == "hpo_system")].set_index("set_id")
-    Cs = E[(E.analysis == "constraint_matched") & (E.family == "hpo_system")].set_index("set_id")
     Ps = Ps[Ps.exp_loci_analytic >= 5].sort_values("fold_analytic")
     yy = np.arange(len(Ps))
     axb.set_xlim(0.75, 1.9); axb.set_ylim(-0.7, len(Ps) - 0.3)
     trb = axb.get_yaxis_transform()
     for yi, sid in zip(yy, Ps.index):
-        a_, b_ = Ps.loc[sid].fold_analytic, Cs.loc[sid].fold_analytic
-        axb.plot([a_, b_], [yi, yi], color=GRID, lw=1.6, zorder=1, solid_capstyle="round")
-        axb.plot([a_], [yi], "o", ms=3.8, mfc=S1 if Ps.loc[sid].q_analytic_within_family < 0.05 else SURF, mec=S1, mew=1)
-        axb.plot([b_], [yi], "D", ms=3.3, mfc=S2 if Cs.loc[sid].q_analytic_within_family < 0.05 else SURF, mec=S2, mew=1)
-        lab = Ps.loc[sid].label.replace("Abnormality of the ", "").replace("Abnormality of ", "")
+        r = Ps.loc[sid]
+        axb.plot([r.fold_analytic], [yi], "o", ms=3.8, mfc=S1 if r.q_analytic_within_family < 0.05 else SURF,
+                 mec=S1, mew=1, zorder=3)
+        lab = r.label.replace("Abnormality of the ", "").replace("Abnormality of ", "")
         axb.text(-0.94, yi, lab[0].upper() + lab[1:], transform=trb, fontsize=6.3, color=INK, va="center")
+        axb.text(1.04, yi, f"{int(r.obs_loci)} / {r.exp_loci_analytic:.1f}", transform=trb, fontsize=6.3, color=INK2,
+                 va="center")
+        axb.text(1.32, yi, fmt_p(r.p_enrich_analytic), transform=trb, fontsize=6.3, color=INK2, va="center")
+        axb.text(1.62, yi, fmt_mp(sid), transform=trb, fontsize=6.3, color=INK2, va="center")
+    for x, s in COLS:
+        axb.text(x, len(Ps) - 0.2, s, transform=trb, fontsize=6.5, color=INK, weight="bold", va="bottom")
     axb.axvline(1, color=MUTED, lw=0.7, ls=(0, (3, 2)))
     axb.set_yticks([]); axb.spines["left"].set_visible(False)
     axb.set_xlabel("Fold enrichment — HPO organ systems (expected ≥ 5 loci)")
     axb.grid(axis="x", color=GRID, lw=0.5); axb.set_axisbelow(True)
     axb.text(-0.98, len(Ps) + 0.3, "B", transform=trb, fontsize=10, weight="bold", va="bottom")
-    n_sig_p = int((Ps.q_analytic_within_family < 0.05).sum())
-    n_sig_c = int((Cs.loc[Ps.index].q_analytic_within_family < 0.05).sum())
-    axb.text(1.06, 0.5, f"Organ systems with FDR q < 0.05:\n{n_sig_p} under the primary null (filled\ncircles), {n_sig_c} after matching null\nloci on gene constraint.",
-             transform=axb.transAxes, fontsize=6.4, color=INK2, va="center")
     save(fig, "Fig2_locus_enrichment")
 
 

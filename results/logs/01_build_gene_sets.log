@@ -1,6 +1,6 @@
-2026-10-30 19:07:54,111 01_build_gene_sets INFO: protein-coding universe: 20145 genes (autosomes + X)
-2026-10-30 19:07:55,477 01_build_gene_sets INFO: gene-disease links: 16465 pairs, 5049 genes
-2026-10-30 19:08:03,238 01_build_gene_sets INFO: 
+2026-10-30 21:00:53,552 01_build_gene_sets INFO: protein-coding universe: 20145 genes (autosomes + X)
+2026-10-30 21:00:56,063 01_build_gene_sets INFO: gene-disease links: 16465 pairs, 5049 genes
+2026-10-30 21:01:04,518 01_build_gene_sets INFO: 
                  set_id            family                                                                        label  n_genes  tested
 0              MEND_ANY  mendelian_source                                Any Mendelian disease gene (OMIM or Orphanet)     5001    True
 1             MEND_OMIM  mendelian_source                                                  OMIM Mendelian disease gene     4801    True
@@ -51,5 +51,3 @@
 46   EXP_INTD_MONOAMINE       exploratory          Inherited monoamine neurotransmitter disorder genes (iNTD; curated)       12    True
 47          EXP_CSF_HVA       exploratory                                 Decreased CSF homovanillic acid (HP:0003785)       10    True
 48         GO_CIRCADIAN  positive_control                            GO: circadian rhythm (GO:0007623 and descendants)      202    True
-49             LOEUF_D1        constraint                    Most LoF-constrained decile (gnomAD v2.1.1 LOEUF < 0.263)     1831    True
-50            LOEUF4_D1        constraint                      Most LoF-constrained decile (gnomAD v4.1 LOEUF < 0.395)     1796    True

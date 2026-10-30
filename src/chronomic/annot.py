@@ -26,7 +26,6 @@ HPOA = RAW / "hpo" / "phenotype.hpoa"
 G2D = RAW / "hpo" / "genes_to_disease.txt"
 ORPHA6 = RAW / "orphanet" / "en_product6.xml"
 CLINGEN = RAW / "clingen" / "clingen_gene_validity.csv"
-GNOMAD = RAW / "gnomad" / "gnomad.v4.1.constraint_metrics.tsv"
 GNOMAD2 = RAW / "gnomad" / "gnomad.v2.1.1.lof_metrics.by_gene.txt.bgz"
 
 ORPHA_CAUSAL = {
@@ -201,20 +200,12 @@ def clingen_validity() -> pd.DataFrame:
         ["gene_id", "gene_symbol", "disease_name", "mondo_id", "moi", "classification"]].dropna(subset=["gene_id"])
 
 
-@lru_cache(maxsize=2)
-def gnomad_constraint(version: str = "v2.1.1") -> pd.DataFrame:
-    """Per-gene LoF constraint. v2.1.1 (Karczewski et al. 2020, peer reviewed) is the primary metric;
-    v4.1 (flagged 'experimental' by gnomAD) is used for sensitivity analyses."""
-    if version == "v2.1.1":
-        c = pd.read_csv(GNOMAD2, sep="\t", compression="gzip",
-                        usecols=["gene", "gene_id", "oe_lof_upper", "pLI", "mis_z", "obs_lof", "exp_lof"])
-        c = c.dropna(subset=["oe_lof_upper"]).sort_values("oe_lof_upper").drop_duplicates("gene_id")
-        return c.rename(columns={"oe_lof_upper": "LOEUF", "mis_z": "missense_z",
-                                 "obs_lof": "lof.obs", "exp_lof": "lof.exp"})
-    c = pd.read_csv(GNOMAD, sep="\t", dtype={"gene_id": str}, low_memory=False)
-    c = c[c.gene_id.str.startswith("ENSG", na=False)]
-    # one row per gene: prefer MANE Select, then canonical
-    c["rank"] = np.where(c.mane_select.astype(str) == "True", 0, np.where(c.canonical.astype(str) == "True", 1, 2))
-    c = c.sort_values(["gene_id", "rank"]).drop_duplicates("gene_id")
-    return c[["gene_id", "gene", "lof.oe_ci.upper", "lof.pLI", "mis.z_score", "lof.obs", "lof.exp"]].rename(
-        columns={"lof.oe_ci.upper": "LOEUF", "lof.pLI": "pLI", "mis.z_score": "missense_z"})
+@lru_cache(maxsize=1)
+def gnomad_constraint() -> pd.DataFrame:
+    """Per-gene LoF constraint from gnomAD v2.1.1 (Karczewski et al. 2020). Used only as a descriptive
+    annotation of candidate genes (catalogue, Fig. 3); no test is adjusted for constraint."""
+    c = pd.read_csv(GNOMAD2, sep="\t", compression="gzip",
+                    usecols=["gene", "gene_id", "oe_lof_upper", "pLI", "mis_z", "obs_lof", "exp_lof"])
+    c = c.dropna(subset=["oe_lof_upper"]).sort_values("oe_lof_upper").drop_duplicates("gene_id")
+    return c.rename(columns={"oe_lof_upper": "LOEUF", "mis_z": "missense_z",
+                             "obs_lof": "lof.obs", "exp_lof": "lof.exp"})

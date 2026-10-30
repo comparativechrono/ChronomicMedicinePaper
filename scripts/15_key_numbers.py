@@ -162,7 +162,20 @@ _fb = hp[(hp.database_id == "OMIM:606220") & (hp.hpo_id == "HP:0006979")]
 K["fbxl3_sleep_annotation"] = {"frequency": _fb.frequency.iloc[0], "reference": _fb.reference.iloc[0],
                                "disease": _fb.disease_name.iloc[0]}
 K["hpo_diseases"] = int(hp.database_id.nunique())
-K["constraint_cuts"] = json.load(open(TABLES / "constraint_class_cuts.json"))
+# HPO organ systems significant at the locus level (primary null), and their gene-level (MAGMA) support
+_sys = E[(E.analysis == "primary") & (E.family == "hpo_system") & (E.q_analytic_within_family < 0.05)]
+_sys = _sys.sort_values("p_enrich_analytic")
+_mm = M[M.model == "marginal"].set_index("set_id").P
+K["hpo_systems_fdr"] = {
+    "n": int(len(_sys)), "n_tested": int((E[E.analysis == "primary"].family == "hpo_system").sum()),
+    "labels": ";".join(_sys.label.str.replace("Abnormality of the ", "").str.replace("Abnormality of ", "")),
+    "fold_min": float(_sys.fold_analytic.min()), "fold_max": float(_sys.fold_analytic.max()),
+    "magma_min_p": float(_mm.reindex(_sys.set_id).min())}
+# sets enriched at the locus level without gene-level (MAGMA) support: dominant, neurodevelopmental, organ systems
+_lo = ["INH_AD", "HPO_HP0001263", "HPO_HP0001249", "HPO_HP0001250"] + _sys.set_id.tolist()
+K["locus_only_sets"] = {"sets": ";".join(_lo), "magma_min_p": float(_mm.reindex(_lo).min()),
+                        "fold_min": float(E[(E.analysis == "primary") & E.set_id.isin(_lo)].fold_analytic.min()),
+                        "fold_max": float(E[(E.analysis == "primary") & E.set_id.isin(_lo)].fold_analytic.max())}
 hits = pd.read_csv(TABLES / "locus_set_hits.tsv", sep="\t")
 K["set_hit_genes"] = {s: ";".join(sorted({g for x in hits[hits.set_id == s].genes for g in x.split(";")}))
                       for s in ["EXP_INTD_MONOAMINE", "EXP_CSF_HVA", "CUR_COMPLEMENT_IUIS", "HPO_CIRCADIAN",

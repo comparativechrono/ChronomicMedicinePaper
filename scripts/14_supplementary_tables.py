@@ -120,16 +120,15 @@ hits = pd.read_csv(TABLES / "locus_set_hits.tsv", sep="\t")
 write("Supplementary_Table_S3_enrichment.xlsx", "Supplementary Table S3 - Locus-level and gene-level enrichment results",
       [("Locus-level enrichment", E, "Observed loci containing >= 1 gene of each set vs matched null loci "
                                     "(10,000 permutations; exact Poisson-binomial p-values) for each analysis: primary "
-                                    "(r2 >= 0.6), r2 >= 0.5, r2 >= 0.8, MHC/17q21.31 excluded, nearest gene, and "
-                                    "constraint-matched (gnomAD v2.1.1 LOEUF class < 0.35, 0.35-0.6, 0.6-1.0, >= 1.0; "
-                                    "for v4.1 the class boundaries are at the same quantiles: 0.507, 0.756, 1.048). "
-                                    "fold_analytic = observed / expected (exact) loci; q = Benjamini-Hochberg within "
-                                    "set family."),
+                                    "(r2 >= 0.6), r2 >= 0.5, r2 >= 0.8, MHC/17q21.31 excluded, and nearest gene. "
+                                    "Null loci are matched on MAF, LD partners, gene count and distance to the nearest "
+                                    "gene. fold_analytic = observed / expected (exact) loci; q = Benjamini-Hochberg "
+                                    "within set family."),
        ("Relative contrasts", Rr, "Pre-specified contrasts: fraction of loci hitting set A among loci hitting set B, "
                                   "observed vs matched null."),
        ("MAGMA gene-set", M, "MAGMA v1.10 competitive gene-set analysis on UK Biobank chronotype (GCST007576): "
-                             "marginal and conditioned on LoF constraint (continuous LOEUF + top decile), "
-                             "neurodevelopmental genes, or Mendelian genes."),
+                             "marginal and conditioned on neurodevelopmental genes (cond_NDD) or Mendelian genes "
+                             "(cond_MEND)."),
        ("MAGMA monoamine LOO", pd.read_csv(TABLES / "magma_monoamine_leave_one_out.tsv", sep="\t"),
         "Post hoc monoamine set: MAGMA marginal gene-set analysis leaving out each of the four genes in "
         "chronotype loci in turn."),
@@ -161,7 +160,8 @@ write("Supplementary_Table_S5_chronomic_gene_catalogue.xlsx",
       [("Catalogue", cat, "One row per Mendelian disease gene in a chronotype locus (r2 >= 0.6 interval): diseases, "
                           "inheritance, ClinGen class, HPO phenotype flags, nearest gene and Open Targets L2G status, "
                           "MAGMA gene p, exome burden p and direction (Backman et al. 2021), QTL colocalisation tissues, "
-                          "gnomAD v2.1.1 LOEUF, mouse circadian atlas and GTEx day-night expression. evidence_count = "
+                          "gnomAD v2.1.1 LoF constraint (LOEUF_v2; descriptive only), mouse circadian atlas and GTEx "
+                          "day-night expression. evidence_count = "
                           "number of five gene-level evidence lines, which are not independent: L2G >= 0.5 for the gene "
                           "in a credible set at the locus (ev_l2g; l2g_gene_score = the gene's highest L2G score at the "
                           "locus; l2g_gene/l2g_score = the top L2G gene at the locus), nearest gene to the lead (ev_nearest), MAGMA "

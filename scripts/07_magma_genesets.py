@@ -3,7 +3,6 @@
 
 Models (all with MAGMA's default gene-level covariates: gene size, gene density, inverse MAC):
   marginal              each set vs all other genes
-  cond_LOEUF            + continuous gnomAD v2.1.1 LOEUF and the LOEUF_D1 set (constraint)
   cond_NDD              + neurodevelopmental set (GDD or ID)
   cond_MEND             + any Mendelian disease gene set
 Outputs: results/tables/magma_genesets.tsv
@@ -19,34 +18,15 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from chronomic.common import BIN, INTERIM, RAW, TABLES, bh_fdr, get_logger  # noqa: E402
+from chronomic.common import BIN, INTERIM, TABLES, bh_fdr, get_logger  # noqa: E402
 
 log = get_logger("07_magma_genesets")
 MAG = INTERIM / "magma"
 MAGMA = BIN / "magma"
-
-con = pd.read_csv(RAW / "gnomad" / "gnomad.v2.1.1.lof_metrics.by_gene.txt.bgz", sep="\t",
-                  compression="gzip", usecols=["gene_id", "oe_lof_upper"]).dropna()
-con = con.groupby("gene_id").oe_lof_upper.min()
-cov = MAG / "loeuf_v2.covar"
-with open(cov, "w") as fh:
-    fh.write("GENE LOEUF\n")
-    for g, v in con.items():
-        fh.write(f"{g} {v}\n")
-
-# constraint gene set from v2.1.1 (most constrained decile), written alongside the main sets
-universe = pd.read_csv(INTERIM / "genesets" / "gene_universe.tsv", sep="\t").gene_id
-cu = con[con.index.isin(universe)]
-thr = cu.quantile(0.1)
-sets_file = MAG / "genesets_with_v2constraint.txt"
-with open(INTERIM / "genesets" / "genesets.magma.txt") as src, open(sets_file, "w") as dst:
-    for line in src:
-        dst.write(line)
-    pass
+sets_file = INTERIM / "genesets" / "genesets.magma.txt"
 
 runs = {
     "marginal": [],
-    "cond_LOEUF": ["--gene-covar", cov, "--model", "condition-hide=LOEUF,LOEUF_D1"],
     "cond_NDD": ["--model", "condition-hide=NDD"],
     "cond_MEND": ["--model", "condition-hide=MEND_ANY"],
 }
@@ -87,7 +67,7 @@ R["q_within_family"] = np.nan
 for (m, f), idx in R.groupby(["model", "family"]).groups.items():
     R.loc[idx, "q_within_family"] = bh_fdr(R.loc[idx, "P"].values)
 R.to_csv(TABLES / "magma_genesets.tsv", sep="\t", index=False)
-key = ["MEND_ANY", "INH_AD", "LOEUF_D1", "LOEUF4_D1", "GO_CIRCADIAN", "HPO_HP0002360", "HPO_CIRCADIAN", "NDD",
+key = ["MEND_ANY", "INH_AD", "GO_CIRCADIAN", "HPO_HP0002360", "HPO_CIRCADIAN", "NDD",
        "HPO_HP0001657", "HPO_HP0001639", "HPO_HP0004431", "EXP_INTD_MONOAMINE", "EXP_CSF_HVA", "RHY_MOUSE_GE3",
        "RHY_GTEX_DAYNIGHT"]
 piv = R[R.set_id.isin(key)].pivot_table(index="set_id", columns="model", values="P").reindex(key)

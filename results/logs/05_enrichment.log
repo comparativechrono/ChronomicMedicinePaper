@@ -1,9 +1,7 @@
-2026-10-30 19:12:13,897 05_enrichment INFO: [primary] loci=351 matching={'genes+maf+buddies+dist': 317, 'genes+maf+buddies': 17, 'genes+maf': 17} MEND_ANY obs=123 exp=114.9 fold=1.07 p=0.1585
-2026-10-30 19:12:15,083 05_enrichment INFO: [r2_0.5] loci=351 matching={'genes+maf+buddies+dist': 316, 'genes+maf': 22, 'genes+maf+buddies': 13} MEND_ANY obs=129 exp=120.0 fold=1.08 p=0.131
-2026-10-30 19:12:16,147 05_enrichment INFO: [r2_0.8] loci=351 matching={'genes+maf+buddies+dist': 329, 'genes+maf+buddies': 12, 'genes+maf': 10} MEND_ANY obs=109 exp=102.1 fold=1.07 p=0.1971
-2026-10-30 19:12:17,201 05_enrichment INFO: [exclude_MHC_17q21] loci=348 matching={'genes+maf+buddies+dist': 314, 'genes+maf': 18, 'genes+maf+buddies': 16} MEND_ANY obs=121 exp=111.9 fold=1.08 p=0.1286
-2026-10-30 19:12:18,294 05_enrichment INFO: [nearest_gene] loci=351 matching={'genes+maf+buddies+dist': 317, 'genes+maf+buddies': 17, 'genes+maf': 17} MEND_ANY obs=96 exp=105.7 fold=0.91 p=0.8874
-2026-10-30 19:12:20,701 05_enrichment INFO: [constraint_matched] loci=351 matching={'genes+constraint+maf+buddies+dist': 281, 'genes+constraint+maf': 39, 'genes+constraint+maf+buddies': 28, 'genes+constraint': 3} MEND_ANY obs=123 exp=130.9 fold=0.94 p=0.8725
-2026-10-30 19:12:23,033 05_enrichment INFO: [constraint_matched_v4] loci=351 matching={'genes+constraint+maf+buddies+dist': 281, 'genes+constraint+maf': 36, 'genes+constraint+maf+buddies': 31, 'genes+constraint': 3} MEND_ANY obs=123 exp=126.2 fold=0.97 p=0.6969
-2026-10-30 19:12:23,040 05_enrichment INFO: done
-2026-10-30 19:12:23,052 05_enrichment INFO: relative contrasts written
+2026-10-30 21:01:52,678 05_enrichment INFO: [primary] loci=351 matching={'genes+maf+buddies+dist': 317, 'genes+maf+buddies': 17, 'genes+maf': 17} MEND_ANY obs=123 exp=114.9 fold=1.07 p=0.1585
+2026-10-30 21:01:53,800 05_enrichment INFO: [r2_0.5] loci=351 matching={'genes+maf+buddies+dist': 316, 'genes+maf': 22, 'genes+maf+buddies': 13} MEND_ANY obs=129 exp=120.0 fold=1.08 p=0.131
+2026-10-30 21:01:54,732 05_enrichment INFO: [r2_0.8] loci=351 matching={'genes+maf+buddies+dist': 329, 'genes+maf+buddies': 12, 'genes+maf': 10} MEND_ANY obs=109 exp=102.1 fold=1.07 p=0.1971
+2026-10-30 21:01:55,650 05_enrichment INFO: [exclude_MHC_17q21] loci=348 matching={'genes+maf+buddies+dist': 314, 'genes+maf': 18, 'genes+maf+buddies': 16} MEND_ANY obs=121 exp=111.9 fold=1.08 p=0.1286
+2026-10-30 21:01:56,655 05_enrichment INFO: [nearest_gene] loci=351 matching={'genes+maf+buddies+dist': 317, 'genes+maf+buddies': 17, 'genes+maf': 17} MEND_ANY obs=96 exp=105.7 fold=0.91 p=0.8874
+2026-10-30 21:01:56,660 05_enrichment INFO: done
+2026-10-30 21:01:56,669 05_enrichment INFO: relative contrasts written

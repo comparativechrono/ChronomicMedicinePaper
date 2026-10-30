@@ -74,43 +74,7 @@ ANALYSES = [
     ("r2_0.8", "80", "ld", False),
     ("exclude_MHC_17q21", "60", "ld", True),
     ("nearest_gene", "60", "nearest", False),
-    ("constraint_matched", "60", "ld", False),
-    ("constraint_matched_v4", "60", "ld", False),
 ]
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from chronomic import annot  # noqa: E402
-LOEUF = {v: genes.gene_id.map(annot.gnomad_constraint(v).set_index("gene_id").LOEUF).values.astype(float)
-         for v in ("v2.1.1", "v4.1")}
-
-
-CUTS_V2 = [0.35, 0.6, 1.0]   # gnomAD v2.1.1 LOEUF class boundaries
-
-
-def constraint_cuts(version: str) -> list[float]:
-    """Class boundaries; for v4.1 the boundaries are placed at the same quantiles of the gene universe."""
-    if version == "v2.1.1":
-        return CUTS_V2
-    v2 = LOEUF["v2.1.1"][~np.isnan(LOEUF["v2.1.1"])]
-    v = LOEUF[version][~np.isnan(LOEUF[version])]
-    return [float(np.quantile(v, (v2 < c).mean())) for c in CUTS_V2]
-
-
-CUTS = {v: constraint_cuts(v) for v in LOEUF}
-save_json({v: {"cuts": c, "quantiles": [float((LOEUF["v2.1.1"][~np.isnan(LOEUF["v2.1.1"])] < x).mean())
-                                        for x in CUTS_V2]} for v, c in CUTS.items()},
-          TABLES / "constraint_class_cuts.json")
-
-
-def constraint_bin(M: sparse.csr_matrix, version: str = "v2.1.1") -> np.ndarray:
-    """Locus constraint class from the most constrained gene in the interval."""
-    loeuf = LOEUF[version]
-    Ml = M.tolil()
-    out = np.zeros(M.shape[0], dtype=np.int64)
-    for i, cols in enumerate(Ml.rows):
-        v = loeuf[cols] if cols else np.array([])
-        v = v[~np.isnan(v)]
-        out[i] = 0 if v.size == 0 else 1 + int(np.searchsorted(CUTS[version], v.min(), side="right"))
-    return out
 
 fam = summary.set_index("set_id").family
 lab = summary.set_index("set_id").label
@@ -132,11 +96,7 @@ for name, tag, mapping, exclude in ANALYSES:
     pool_df, Mp = pool_df[keep_p].reset_index(drop=True), Mp[np.where(keep_p)[0]]
 
     ncol = f"n_genes_r{tag}"
-    extra = None
-    if name.startswith("constraint_matched"):
-        ver = "v4.1" if name.endswith("v4") else "v2.1.1"
-        extra = {"constraint": (constraint_bin(Mp, ver), constraint_bin(Mo, ver))}
-    cands, level = E.match_candidates(obs_df, pool_df, ncol, q=cfg["null_model"]["maf_bins"], extra=extra)
+    cands, level = E.match_candidates(obs_df, pool_df, ncol, q=cfg["null_model"]["maf_bins"])
     obs_hits = E.set_hit_matrix(Mo, set_ind).sum(axis=0)
     pool_hits = E.set_hit_matrix(Mp, set_ind)
     null = E.permute(cands, pool_hits, N_PERM, rng)
@@ -187,8 +147,7 @@ log.info("done")
 # ------------------------------------------------------------------ pre-specified relative contrasts
 CONTRASTS = [("HPO_HP0002360", "MEND_ANY"), ("HPO_HP0002360", "NDD"), ("HPO_CIRCADIAN", "MEND_ANY"),
              ("HPO_HP0001657", "MEND_ANY"), ("HPO_HP0001639", "MEND_ANY"), ("EXP_INTD_MONOAMINE", "MEND_ANY"),
-             ("GO_CIRCADIAN", "LOEUF_D1"), ("INH_AD", "MEND_ANY"), ("HPO_HP0001263", "MEND_ANY"),
-             ("HPO_HP0002360", "INH_AD")]
+             ("INH_AD", "MEND_ANY"), ("HPO_HP0001263", "MEND_ANY"), ("HPO_HP0002360", "INH_AD")]
 rel = []
 for name, *_ in ANALYSES:
     null = np.load(INTERIM / "null" / f"null_hits_{name}.npy")

@@ -191,15 +191,6 @@ with gzip.open(RAW / "go" / "goa_human.gaf.gz", "rt") as fh:
                 go_genes.add(gid)
 add("GO_CIRCADIAN", "positive_control", "GO: circadian rhythm (GO:0007623 and descendants)", go_genes)
 
-# constraint (general GWAS-locus property; used as a covariate/contrast)
-thr = {}
-for ver, sid in [("v2.1.1", "LOEUF_D1"), ("v4.1", "LOEUF4_D1")]:
-    con = annot.gnomad_constraint(ver)
-    con = con[con.gene_id.isin(universe)].dropna(subset=["LOEUF"])
-    thr[ver] = float(con.LOEUF.quantile(0.1))
-    add(sid, "constraint", f"Most LoF-constrained decile (gnomAD {ver} LOEUF < {thr[ver]:.3f})",
-        set(con.loc[con.LOEUF < thr[ver], "gene_id"]))
-
 # ------------------------------------------------------------------ filter & write
 lo, hi = cfg["mendelian"]["min_genes_per_set"], cfg["mendelian"]["max_genes_per_set"]
 rows, summ = [], []
@@ -217,5 +208,5 @@ with open(OUT / "genesets.magma.txt", "w") as fh:
         fh.write(sid + " " + " ".join(sub.gene_id) + "\n")
 
 save_json({"hpo_version": annot.hpo_version(), "n_universe": len(universe),
-           "n_links": int(len(links)), "loeuf_decile_thresholds": thr}, OUT / "provenance.json")
+           "n_links": int(len(links))}, OUT / "provenance.json")
 log.info("\n%s", summary.to_string())

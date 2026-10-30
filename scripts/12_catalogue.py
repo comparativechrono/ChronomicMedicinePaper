@@ -83,7 +83,7 @@ cat["burden_p"] = cat.gene_id.map(bur.p_burden)
 cat["burden_p_ultrarare"] = cat.gene_id.map(bur["p_burden_maf_le_0.1pct"])
 cat["burden_direction"] = cat.gene_id.map(bur.direction)
 cat["burden_best_mask"] = cat.gene_id.map(bur.best_mask)
-con = annot.gnomad_constraint("v2.1.1").set_index("gene_id")
+con = annot.gnomad_constraint().set_index("gene_id")   # descriptive annotation only
 cat["LOEUF_v2"] = cat.gene_id.map(con.LOEUF)
 rh = pd.read_csv(INTERIM / "rhythm" / "gene_rhythmicity.tsv", sep="\t", index_col=0)
 cat["mouse_rhythmic_n"] = cat.gene_id.map(rh.mouse_n_rhythmic)

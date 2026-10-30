@@ -40,8 +40,8 @@ def lookup(path: str):
 def fmt(v, f: str) -> str:
     if f in ("", "raw"):
         return str(v)
-    if f == "genes":  # "A;B;C" -> "*A*, *B* and *C*"
-        g = [f"*{x}*" for x in str(v).split(";") if x]
+    if f in ("genes", "list"):  # "A;B;C" -> "*A*, *B* and *C*" (genes, italic) or "A, B and C" (list, lower case)
+        g = [f"*{x}*" if f == "genes" else x[0].lower() + x[1:] for x in str(v).split(";") if x]
         return g[0] if len(g) == 1 else ", ".join(g[:-1]) + " and " + g[-1]
     v = float(v)
     if f == "pm":   # MAGMA p-value with relation sign; MAGMA's numerical floor is ~1e-15

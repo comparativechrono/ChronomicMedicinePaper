@@ -10,13 +10,13 @@ to understand, diagnose and manage disease.
 ## Main findings
 
 * **No general enrichment.** Mendelian disease genes are not enriched at the 351 chronotype loci of Jones et al.
-  (2019) once null loci are matched for allele frequency, LD, gene count and distance. The loci are, however,
-  enriched for loss-of-function-constrained genes, and constraint accounts for most apparent organ-system and
-  neurodevelopmental enrichments.
+  (2019) once null loci are matched for allele frequency, LD, gene count and distance. Genes for dominant and
+  neurodevelopmental disorders, and for five HPO organ systems, are modestly over-represented within loci, but
+  none of these sets is enriched in gene-level (MAGMA) tests.
 * **Phenotype-specific convergence is modest.**
-  * Genes for Mendelian disorders with sleep disturbance are over-represented, but the signal is attenuated by
-    constraint matching, is carried by genes that also cause neurodevelopmental disorders, and is not separable
-    from an excess of autosomal dominant disease genes.
+  * Genes for Mendelian disorders with sleep disturbance are over-represented, but the signal is carried mainly
+    by genes that also cause neurodevelopmental disorders and is not separable from an excess of autosomal
+    dominant disease genes.
   * In a post hoc analysis, 4 of 12 monoamine neurotransmitter disorder genes (*GCH1*, *DDC*, *DNAJC12*,
     *SLC18A2*) lie in chronotype loci; gene-level support is strongest for *DDC*.
 * **Rare variants converge on clock genes.** In UK Biobank exomes, rare variants in *PER2* and *PER3* are
@@ -74,7 +74,7 @@ cores. The longest steps are the downloads, MAGMA, and the Open Targets API quer
 | Orphanet | product 6, June 2026 | disease-causing gene associations |
 | ClinGen gene–disease validity | downloaded 2026-10-30 | validated Mendelian genes |
 | IUIS classification of inborn errors of immunity (Tangye et al. 2022) | complement deficiencies | curated complement gene set |
-| gnomAD constraint | v2.1.1 (primary), v4.1 (sensitivity) | LoF constraint (LOEUF) |
+| gnomAD constraint | v2.1.1 | per-gene LoF constraint (LOEUF), descriptive annotation of candidate genes only |
 | Gene Ontology | downloaded 2026-10-30 | positive-control circadian gene set |
 | Open Targets Platform | 26.09 (GraphQL API) | credible sets, L2G, colocalisation |
 | UK Biobank exome burden (Backman et al. 2021) | GCST90081559–62 (European ancestry, n = 388,330) | rare-variant convergence |

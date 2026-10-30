@@ -3,8 +3,8 @@
 
 Complements the HPO phenotype sets of 05_enrichment.py with clinically defined disease groups
 (Genomics England PanelApp green genes, retrieved by 01b_fetch_panelapp.py). Each panel is tested with
-the same matched-null framework (primary null, and constraint-matched nulls with gnomAD v2.1.1 and v4.1;
-exact Poisson-binomial p-values) and Benjamini-Hochberg FDR across panels.
+the same matched-null framework as 05_enrichment.py (primary null plus the interval and MHC/17q21.31
+sensitivity analyses; exact Poisson-binomial p-values) and Benjamini-Hochberg FDR across panels.
 
 Panels: public panels excluding super-panels and "Additional findings" lists; panels whose green-gene set
 is identical to another panel's are tested once; 10-3,000 genes in the gene universe.
@@ -71,33 +71,13 @@ def in_window(chrom, start, end, w):
 
 
 Mo = obs_matrix("60")
-Mp = sparse.load_npz(INTERIM / "null" / "pool_genes_r60.npz")
-LOEUF = {v: genes.gene_id.map(annot.gnomad_constraint(v).set_index("gene_id").LOEUF).values.astype(float)
-         for v in ("v2.1.1", "v4.1")}
-CUTS_V2 = [0.35, 0.6, 1.0]
-_v2 = LOEUF["v2.1.1"][~np.isnan(LOEUF["v2.1.1"])]
-CUTS = {"v2.1.1": CUTS_V2,
-        "v4.1": [float(np.quantile(LOEUF["v4.1"][~np.isnan(LOEUF["v4.1"])], (_v2 < c).mean())) for c in CUTS_V2]}
-
-
-def constraint_bin(M: sparse.csr_matrix, version: str) -> np.ndarray:
-    loeuf = LOEUF[version]
-    out = np.zeros(M.shape[0], dtype=np.int64)
-    for i, cols in enumerate(M.tolil().rows):
-        v = loeuf[cols] if cols else np.array([])
-        v = v[~np.isnan(v)]
-        out[i] = 0 if v.size == 0 else 1 + int(np.searchsorted(CUTS[version], v.min(), side="right"))
-    return out
-
-
 obs_hit_mat = E.set_hit_matrix(Mo, set_ind)
 obs_hits = obs_hit_mat.sum(axis=0)
 res = P[["panel_id", "panel_name", "disease_group", "disease_sub_group", "types", "n_genes_universe"]].reset_index(drop=True)
 res["obs_loci"] = np.asarray(obs_hits, int)
 excl_windows = [cfg["loci"]["mhc"], cfg["loci"]["inv17q21"]]
-for name, tag, ver, exclude in (("primary", "60", None, False), ("constraint_matched", "60", "v2.1.1", False),
-                                ("constraint_matched_v4", "60", "v4.1", False), ("r2_0.5", "50", None, False),
-                                ("r2_0.8", "80", None, False), ("exclude_MHC_17q21", "60", None, True)):
+for name, tag, exclude in (("primary", "60", False), ("r2_0.5", "50", False), ("r2_0.8", "80", False),
+                           ("exclude_MHC_17q21", "60", True)):
     mo, mp = obs_matrix(tag), sparse.load_npz(INTERIM / "null" / f"pool_genes_r{tag}.npz")
     od, pdf = leads, pool
     if exclude:
@@ -108,8 +88,7 @@ for name, tag, ver, exclude in (("primary", "60", None, False), ("constraint_mat
             kp &= ~in_window(pool.chrom, pool[f"start_r{tag}"], pool[f"end_r{tag}"], w).values
         od, mo = leads[ko].reset_index(drop=True), mo[np.where(ko)[0]]
         pdf, mp = pool[kp].reset_index(drop=True), mp[np.where(kp)[0]]
-    extra = None if ver is None else {"constraint": (constraint_bin(mp, ver), constraint_bin(mo, ver))}
-    cands, _ = E.match_candidates(od, pdf, f"n_genes_r{tag}", q=cfg["null_model"]["maf_bins"], extra=extra)
+    cands, _ = E.match_candidates(od, pdf, f"n_genes_r{tag}", q=cfg["null_model"]["maf_bins"])
     ph = E.set_hit_matrix(mp, set_ind)
     oh = E.set_hit_matrix(mo, set_ind).sum(axis=0)
     probs = E.hit_probabilities(cands, ph)
@@ -127,4 +106,4 @@ res["genes_in_loci"] = [";".join(sorted({sym[genes.gene_id.iloc[k]] for i in np.
 res = res.sort_values("p_primary")
 res.to_csv(TABLES / "enrichment_panelapp.tsv", sep="\t", index=False)
 log.info("\n%s", res.head(25)[["panel_name", "n_genes_universe", "obs_loci", "exp_primary", "p_primary", "q_primary",
-                               "p_constraint_matched", "q_constraint_matched", "p_constraint_matched_v4"]].to_string())
+                               "p_r2_0.8", "p_exclude_MHC_17q21"]].to_string())

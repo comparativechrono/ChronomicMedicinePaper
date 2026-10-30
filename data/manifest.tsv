@@ -11,7 +11,6 @@ data/raw/clingen/clingen_gene_validity.csv	https://search.clinicalgenome.org/kb/
 data/raw/genes/gencode.v48lift37.basic.annotation.gtf.gz	https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_48/GRCh37_mapping/gencode.v48lift37.basic.annotation.gtf.gz	2026-10-30T16:12:25Z	44380417	872e0ad3bad19718193151b22d373d2f
 data/raw/genes/hgnc_complete_set.txt	https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt	2026-10-30T16:12:27Z	16986126	39d46ee3ced2310056ec206019b67425
 data/raw/gnomad/gnomad.v2.1.1.lof_metrics.by_gene.txt.bgz	https://storage.googleapis.com/gcp-public-data--gnomad/release/2.1.1/constraint/gnomad.v2.1.1.lof_metrics.by_gene.txt.bgz	2026-10-30T16:48:11Z	4609488	967fb59dc509d9ee351b9d35efacf52a
-data/raw/gnomad/gnomad.v4.1.constraint_metrics.tsv	https://storage.googleapis.com/gcp-public-data--gnomad/release/4.1/constraint/gnomad.v4.1.constraint_metrics.tsv	2026-10-30T16:12:35Z	95546041	14df4b2acb581fcbbb2a82a3a555fd35
 data/raw/go/go-basic.obo	https://current.geneontology.org/ontology/go-basic.obo	2026-10-30T16:15:47Z	32227785	26de643e50af9a1588f9a31062348cc4
 data/raw/go/goa_human.gaf.gz	https://current.geneontology.org/annotations/goa_human.gaf.gz	2026-10-30T16:15:47Z	15041996	3d16e91814f541afc3cdb03153ae0f55
 data/raw/gwas/GCST007565_README.txt	https://ftp.ebi.ac.uk/pub/databases/gwas/summary_statistics/GCST007001-GCST008000/GCST007565/morning_person_README.txt	2026-10-30T16:22:13Z	2357	e4ffe55b6f87539e112d21cde0264442
