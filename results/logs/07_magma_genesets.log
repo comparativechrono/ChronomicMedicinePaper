@@ -1,0 +1,24 @@
+2026-10-30 22:17:21,798 07_magma_genesets INFO: monoamine leave-one-out:
+               set_id  NGENES     BETA         P
+0  EXP_INTD_MONOAMINE      11  0.48635  0.032048
+1      MONO_minus_DDC      10  0.28875  0.142540
+2     MONO_minus_GCH1      10  0.50563  0.034422
+3  MONO_minus_DNAJC12      10  0.50347  0.038367
+4  MONO_minus_SLC18A2      10  0.44931  0.048424
+2026-10-30 22:17:34,152 07_magma_genesets INFO: PanelApp panels in MAGMA: 248; p < 0.05: 4
+2026-10-30 22:17:34,172 07_magma_genesets INFO: 
+model               cond_MEND  cond_NDD  marginal
+set_id                                           
+MEND_ANY                  NaN  0.953310  0.754520
+INH_AD               0.118460  0.386620  0.275340
+GO_CIRCADIAN         0.001759  0.002002  0.001891
+HPO_HP0002360        0.016322  0.051299  0.031429
+HPO_CIRCADIAN        0.210300  0.251650  0.226970
+NDD                  0.036535       NaN  0.175200
+HPO_HP0001657        0.853120  0.868540  0.864500
+HPO_HP0001639        0.849760  0.915300  0.875620
+HPO_HP0004431        0.587760  0.603880  0.604020
+EXP_INTD_MONOAMINE   0.030199  0.035341  0.032048
+EXP_CSF_HVA          0.087041  0.100260  0.092307
+RHY_MOUSE_GE3        0.007950  0.009199  0.008573
+RHY_GTEX_DAYNIGHT    0.010826  0.012873  0.011413

@@ -1,0 +1,8 @@
+{
+  "matching_levels": {
+    "genes+maf+buddies+dist": 317,
+    "genes+maf+buddies": 17,
+    "genes+maf": 17
+  },
+  "n_candidates_median": 489.0
+}

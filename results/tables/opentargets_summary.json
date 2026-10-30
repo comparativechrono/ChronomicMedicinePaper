@@ -1,0 +1,36 @@
+{
+  "open_targets_api": {
+    "x": "26",
+    "y": "9",
+    "z": "0"
+  },
+  "open_targets_data": {
+    "year": "26",
+    "month": "09",
+    "iteration": null
+  },
+  "retrieved_utc": "2026-10-30T16:38:42Z",
+  "n_credible_sets": 570,
+  "loci_linked": 295,
+  "loci_with_l2g_gene": 273,
+  "loci_l2g_ge_0.5": 203,
+  "l2g_gene_equals_nearest": 228,
+  "l2g_genes_mendelian": 82,
+  "loci_with_qtl_coloc": 48,
+  "loci_with_qtl_coloc_clpp001": 143,
+  "qtl_genes_clpp01": 83,
+  "qtl_genes_clpp001": 338,
+  "coloc_methods": {
+    "COLOC_PIP_ECAVIAR": 23582
+  },
+  "coloc_rows": 23582,
+  "coloc_rows_qtl": 7406,
+  "coloc_min_h4_pip": 0.9141158612220701,
+  "coloc_min_clpp": 0.010000556764493247,
+  "credible_sets_by_study_method": {
+    "GCST007576|PICS": 308,
+    "GCST90691736|SuSiE-inf": 146,
+    "GCST007565|PICS": 97,
+    "GCST90691736|PICS": 19
+  }
+}

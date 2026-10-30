@@ -1,0 +1,15 @@
+# Downloaded inputs and binaries are re-created by scripts/00_download_data.py
+data/raw/
+data/interim/
+bin/
+*.part
+# Python / OS clutter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+# verbose run logs (summaries are kept in results/logs/*.log)
+results/logs/*.out
+
+# delivery bundles
+results/*.zip

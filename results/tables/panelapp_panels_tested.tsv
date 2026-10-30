@@ -1,0 +1,249 @@
+panel_id	panel_name	version	disease_group	disease_sub_group	n_genes	types	n_genes_universe
+1	Thoracic aortic aneurysm or dissection	1.129	Cardiovascular disorders	Connective tissue disorders and aortopathies	65	Rare Disease 100K	65
+3	Stickler syndrome	4.12	Ophthalmology		11	Rare Disease 100K;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	11
+5	Currarino triad	1.2			11	Rare Disease 100K	11
+6	Familial hypercholesterolaemia	1.31	Cardiovascular disorders	Arteriopathies	43	Rare Disease 100K	43
+7	Familial dysautonomia	1.18			23	Rare Disease 100K	23
+9	Differences in sex development	4.34	Endocrinology		71	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	70
+11	Familial Neural Tube Defects	1.11			44	Rare Disease 100K	43
+13	Brugada syndrome and cardiac sodium channel disease	3.18	Cardiology		23	Rare Disease 100K;GMS Rare Disease;Component Of Super Panel;GMS signed-off	23
+20	Hereditary ataxia	1.345	Neurology and neurodevelopmental disorders	Motor Disorders of the CNS	168	Rare Disease 100K	166
+23	Familial hidradenitis suppurativa	1.5	Dermatological disorders	Skin adnexa disorders	11	Rare Disease 100K	11
+24	Peeling skin syndrome	1.5	Dermatological disorders	Skin fragility disorders	13	Rare Disease 100K	12
+25	Congenital disorders of glycosylation	8.8	Metabolic		122	Rare Disease 100K;Component Of Super Panel;GMS signed-off	122
+26	Diabetes with additional phenotypes suggestive of a monogenic aetiology	1.69	Endocrine disorders	Disorders of unusual phenotypes	64	Rare Disease 100K	63
+31	Congenital hypothyroidism	4.1	Endocrinology		35	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	35
+33	Gastrointestinal epithelial barrier disorders	1.76	Gastroenterological disorders	Gastrointestinal disorders	83	Rare Disease 100K	83
+34	Anophthalmia or microphthalmia	1.57	Ophthalmological disorders	Ocular malformations	63	Rare Disease 100K	63
+36	Multiple endocrine tumours	1.15	Tumour syndromes	Breast and endocrine	16	Rare Disease 100K	16
+38	Beckwith-Wiedemann syndrome (BWS) and other congenital overgrowth disorders	1.121	Growth disorders	Beckwith-Wiedemann syndrome (BWS) and other congenital overgrowth disorders	30	Rare Disease 100K	28
+39	Parkinson Disease and Complex Parkinsonism	1.128	Neurology and neurodevelopmental disorders	Neurodegenerative disorders	72	Rare Disease 100K	72
+42	Inherited white matter disorders	1.186	Neurology and neurodevelopmental disorders	White matter disorders	174	Rare Disease 100K	173
+45	Sudden death in young people	1.16	Cardiovascular disorders	Cardiac arrhythmia	35	Rare Disease 100K	32
+47	Dilated Cardiomyopathy and conduction defects	1.97	Cardiovascular disorders	Cardiomyopathy	85	Rare Disease 100K	85
+48	RASopathies	1.87	Dysmorphic and congenital abnormality syndromes	RASopathies	25	Rare Disease 100K	24
+49	Hypertrophic cardiomyopathy	6.4	Cardiology		82	Rare Disease 100K;GMS Rare Disease;Component Of Super Panel;GMS signed-off;GMS Rare Disease Virtual	78
+50	Familial cerebral small vessel disease	1.18	Cardiovascular disorders	Arteriopathies	17	Rare Disease 100K	17
+53	Ehlers Danlos syndrome with a likely monogenic cause	4.2	Musculoskeletal		84	Rare Disease 100K;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	84
+59	Haematological malignancies cancer susceptibility	5.1	Cancer susceptibility		109	Cancer Germline 100K;GMS Cancer Germline Virtual;GMS signed-off	106
+60	Periodic fever syndromes	1.34	Rheumatological disorders	Multi-system inflammatory/autoimmune disorders	30	Rare Disease 100K	30
+61	Gastrointestinal neuromuscular disorders	1.3	Gastroenterological disorders	Gastrointestinal disorders	30	Rare Disease 100K	29
+63	Familial Hirschsprung Disease	1.11	Gastroenterological disorders	Gastrointestinal disorders	63	Rare Disease 100K	60
+65	Primary lymphoedema	5.7	Cardiology		60	Rare Disease 100K;GMS Rare Disease Virtual;GMS Rare Disease;GMS signed-off	53
+66	Rhabdomyolysis and metabolic muscle disorders	6.12	Neurology		77	Rare Disease 100K;Component Of Super Panel;GMS signed-off	75
+75	Mucopolysaccharideosis, Gaucher, Fabry	1.5	Metabolic disorders	Lysosomal storage disorders	18	Rare Disease 100K	18
+76	Long QT syndrome	3.15	Cardiology		23	Rare Disease 100K;GMS Rare Disease;Component Of Super Panel;GMS signed-off;GMS Rare Disease Virtual	23
+77	Xeroderma pigmentosum, Trichothiodystrophy or Cockayne syndrome	3.9	Dermatology		22	Rare Disease 100K;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	22
+78	Holoprosencephaly	6.6	Neurology		26	Rare Disease 100K;GMS Rare Disease Virtual;Component Of Super Panel;GMS signed-off	26
+79	Paediatric motor neuronopathies	3.2	Neurology		39	Rare Disease 100K;Component Of Super Panel;GMS signed-off	38
+81	Clefting	7.16	Musculoskeletal		314	Rare Disease 100K;GMS Rare Disease Virtual;Component Of Super Panel;GMS signed-off	313
+85	Hereditary neuropathy	1.513	Neurology and neurodevelopmental disorders	Motor and Sensory Disorders of the PNS	288	Rare Disease 100K	285
+87	Multi-organ autoimmune diabetes	1.12	Endocrine disorders	Disorders of unusual phenotypes	42	Rare Disease 100K	41
+90	Brain channelopathy	1.83	Neurology and neurodevelopmental disorders	Channelopathies	26	Rare Disease 100K	26
+92	Hypogonadotropic hypogonadism	1.42	Endocrine disorders	Hypothalamic and pituitary disorders	47	Rare Disease 100K	47
+96	Malformations of cortical development	8.11	Neurology		146	Rare Disease 100K;Component Of Super Panel;GMS signed-off	146
+97	Inherited phaeochromocytoma and paraganglioma	1.12	Tumour syndromes	Breast and endocrine	20	Rare Disease 100K	20
+98	Segmental overgrowth disorders - Deep sequencing	5.3	Dermatology		20	Rare Disease 100K;GMS Rare Disease Virtual;GMS Rare Disease;GMS signed-off	20
+101	VACTERL-like phenotypes	1.35	Dysmorphic and congenital abnormality syndromes	Limb disorders	62	Rare Disease 100K	61
+105	Pneumothorax - familial	3.8	Respiratory		36	Rare Disease 100K;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	36
+106	Proteinuric renal disease	6.24	Renal		111	Rare Disease 100K;GMS signed-off;Component Of Super Panel;GMS Rare Disease Virtual	93
+111	COVID-19 research	1.147	Viral research		695	Research	683
+112	Mitochondrial disorders	10.25	Mitochondrial		494	Rare Disease 100K;GMS Rare Disease Virtual;Component Of Super Panel;GMS signed-off	359
+114	Peroxisomal disorders	1.2	Metabolic disorders	Peroxisomal disorders	38	Rare Disease 100K	38
+115	Head and neck cancer pertinent cancer susceptibility	1.1	Cancer Programme	Pertinent cancer susceptibility gene panel	12	Cancer Germline 100K	12
+119	Epidermolysis bullosa	1.12	Dermatological disorders	Skin fragility disorders	21	Rare Disease 100K	21
+122	Thoracic dystrophies	1.24	Skeletal disorders	Skeletal dysplasias	133	Rare Disease 100K	133
+123	Hereditary haemorrhagic telangiectasia	3.9	Respiratory		15	Rare Disease 100K;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	15
+126	Monogenic hearing loss	6.51	Audiology		442	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease;Component Of Super Panel	432
+128	Ocular and oculo-cutaneous albinism	1.24			15	Rare Disease 100K	14
+130	Severe early-onset obesity	7.1	Endocrinology		48	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	48
+131	IUGR and IGF abnormalities	1.7	Endocrine disorders	Growth hormone disorders	112	Rare Disease 100K	110
+132	Generalised pustular psoriasis	1.13	Dermatological disorders	Autoimmune skin disorders	12	Rare Disease 100K	12
+134	Arrhythmogenic right ventricular cardiomyopathy	3.21	Cardiology		20	Rare Disease 100K;GMS Rare Disease;Component Of Super Panel;GMS signed-off;GMS Rare Disease Virtual	20
+136	Ectodermal dysplasia without a known gene mutation	1.3	Dermatological disorders	Ectodermal dysplasias	30	Rare Disease 100K	29
+139	Atypical haemolytic uraemic syndrome	3.11	Renal		15	Rare Disease 100K;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual;Component Of Super Panel	15
+143	Inherited ovarian cancer (without breast cancer)	5.3	Inherited cancer		27	Rare Disease 100K;GMS Rare Disease Virtual;GMS Rare Disease;GMS signed-off	27
+144	Fetal hydrops	1.108	Dysmorphic and congenital abnormality syndromes	Fetal disorders	113	Rare Disease 100K	111
+145	Congenital adrenal hypoplasia	5.6	Endocrinology		23	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	23
+147	Cerebral vascular malformations	5.3	Neurology		115	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	112
+149	Nephrocalcinosis or nephrolithiasis	6.3	Renal		52	Rare Disease 100K;GMS Rare Disease;Component Of Super Panel;GMS signed-off;GMS Rare Disease Virtual	52
+150	Rare multisystem ciliopathy disorders	1.182	Ciliopathies	Congenital malformations caused by ciliopathies	205	Rare Disease 100K	145
+152	Familial diabetes	1.69	Endocrine disorders	Disorders of unusual phenotypes	56	Rare Disease 100K	55
+154	Renal cancer pertinent cancer susceptibility	1.3	Cancer Programme	Pertinent cancer susceptibility gene panel	10	Cancer Germline 100K	10
+155	Primary ovarian insufficiency	1.71	Endocrine disorders	Gonadal and sex development disorders	70	Rare Disease 100K	69
+156	Unexplained kidney failure in young people	1.125	Renal and urinary tract disorders	Disorders of function	170	Rare Disease 100K	170
+157	Hereditary Erythrocytosis	3.3	Haematology		17	Rare Disease 100K;GMS Rare Disease Virtual;GMS Rare Disease;GMS signed-off	17
+158	Familial breast cancer	1.28	Tumour syndromes	Breast and endocrine	27	Rare Disease 100K	27
+159	Cytopenias and congenital anaemias	1.124	Haematological disorders	Anaemias and red cell disorders	223	Rare Disease 100K	220
+162	Severe microcephaly	9.58	Neurology		301	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off	298
+165	Hereditary spastic paraplegia	1.316	Neurology and neurodevelopmental disorders	Motor Disorders of the CNS	115	Rare Disease 100K	101
+167	Familial Tumours Syndromes of the central & peripheral Nervous system	1.15	Tumour syndromes	Muscle and nerve	21	Rare Disease 100K	21
+168	Rare syndromic craniosynostosis or isolated multisuture synostosis	7.3	Musculoskeletal		197	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off	195
+171	Inherited non-medullary thyroid cancer	1.8	Tumour syndromes	Breast and endocrine	30	Rare Disease 100K	27
+174	Insulin resistance (including lipodystrophy)	1.18	Endocrine disorders	Disorders of unusual phenotypes	26	Rare Disease 100K	26
+175	Inherited bleeding disorders	1.182	Haematological and immunological disorders	Haemostasis disorders	119	Rare Disease 100K	118
+176	Infantile enterocolitis & monogenic inflammatory bowel disease	1.45	Gastroenterological disorders	Gastrointestinal disorders	69	Rare Disease 100K	69
+178	Primary ciliary disorders	1.56	Ciliopathies	Respiratory ciliopathies	145	Rare Disease 100K	145
+179	Hydrocephalus	5.18	Neurology		113	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off	113
+180	Structural basal ganglia disorders	1.4	Neurology and neurodevelopmental disorders	Motor Disorders of the CNS	76	Rare Disease 100K	73
+183	Neuroendocrine cancer pertinent cancer susceptibility	1.5	Cancer Programme	Pertinent cancer susceptibility gene panel	12	Cancer Germline 100K	12
+185	Limb girdle muscular dystrophies, myofibrillar myopathies and distal myopathies	6.18	Neurology		111	Rare Disease 100K;GMS Rare Disease Virtual;Component Of Super Panel;GMS signed-off;GMS Rare Disease	111
+186	Optic neuropathy	6.53	Ophthalmology		106	Rare Disease 100K;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	90
+189	Non-syndromic hypotrichosis	1.15	Dermatological disorders	Skin adnexa disorders	13	Rare Disease 100K	13
+192	Early onset dystonia	1.152	Neurology and neurodevelopmental disorders	Motor Disorders of the CNS	113	Rare Disease 100K	112
+193	Pulmonary arterial hypertension	4.15	Respiratory		24	Rare Disease 100K;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	24
+196	Osteogenesis imperfecta	6.8	Musculoskeletal		192	Rare Disease 100K;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	192
+200	Familial pulmonary fibrosis	1.32	Respiratory disorders	Interstitial lung disorders	75	Rare Disease 100K	74
+201	Genodermatoses with malignancies	1.11	Tumour syndromes	Skin	13	Rare Disease 100K	13
+207	Congenital muscular dystrophy	7.27	Neurology		65	Rare Disease 100K;GMS Rare Disease;Component Of Super Panel;GMS signed-off;GMS Rare Disease Virtual	65
+209	Ductal plate malformation	1.31			151	Rare Disease 100K	150
+211	Multiple Epiphyseal Dysplasia	1.7	Skeletal disorders	Skeletal dysplasias	11	Rare Disease 100K	11
+212	Familial non syndromic congenital heart disease	1.9	Cardiovascular disorders	Congenital heart disease	53	Rare Disease 100K	53
+213	Kleine-Levin syndrome	1.8	Neurology and neurodevelopmental disorders	Sleep disorders	13	Rare Disease 100K	13
+214	Catecholaminergic polymorphic VT	5.6	Cardiology		10	Rare Disease 100K;GMS Rare Disease;Component Of Super Panel;GMS signed-off;GMS Rare Disease Virtual	10
+215	Palmoplantar keratoderma and erythrokeratodermas	1.35	Dermatological disorders	Keratodermas	46	Rare Disease 100K	44
+217	Sarcoma cancer susceptibility	1.26	Cancer Programme	Pertinent cancer susceptibility gene panel	33	Cancer Germline 100K	33
+219	Neurotransmitter disorders	1.11	Neurology and neurodevelopmental disorders	Motor Disorders of the CNS	18	Rare Disease 100K	18
+221	Choanal atresia	1.17	Skeletal disorders	Choanal anomalies	14	Rare Disease 100K	14
+222	Vici Syndrome and other autophagy disorders	1.3	Dysmorphic and congenital abnormality syndromes	Autophagy disorders	12	Rare Disease 100K	12
+224	Short QT syndrome	3.25	Cardiology		40	Rare Disease 100K;GMS Rare Disease;Component Of Super Panel;GMS signed-off	40
+225	Congenital myopathy	7.81	Neurology		149	Rare Disease 100K;GMS Rare Disease;GMS Rare Disease Virtual;Component Of Super Panel;GMS signed-off	141
+229	Skeletal Muscle Channelopathies	1.48	Neurology and neurodevelopmental disorders	Channelopathies	22	Rare Disease 100K	19
+230	Bilateral congenital or childhood onset cataracts	8.15	Ophthalmology		209	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off	206
+232	Congenital myaesthenic syndrome	6.3	Neurology		36	Rare Disease 100K;GMS Rare Disease Virtual;GMS Rare Disease;Component Of Super Panel;GMS signed-off	36
+234	CAKUT	1.182	Renal and urinary tract disorders	Structural renal and urinary tract disease	101	Rare Disease 100K	101
+235	Distal myopathies	7.6	Neurology		33	Rare Disease 100K;Component Of Super Panel;GMS signed-off	33
+238	Left Ventricular Noncompaction Cardiomyopathy	1.5	Cardiovascular disorders	Cardiomyopathy	17	Rare Disease 100K	17
+243	Childhood solid tumours	5.12	Cancer susceptibility		122	Rare Disease 100K;GMS Cancer Germline Virtual;GMS signed-off	119
+244	Colorectal cancer pertinent cancer susceptibility	1.1	Cancer Programme	Pertinent cancer susceptibility gene panel	13	Cancer Germline 100K	13
+245	Adult solid tumours cancer susceptibility	2.4	Cancer susceptibility		105	Cancer Germline 100K;GMS Cancer Germline Virtual;GMS signed-off	104
+246	Infantile nystagmus	1.11	Ophthalmological disorders	Ocular movement disorders	19	Rare Disease 100K	13
+247	Radial dysplasia	1.25	Dysmorphic and congenital abnormality syndromes	Dysmorphic disorders	60	Rare Disease 100K	60
+248	Ketotic hypoglycaemia	1.1	Metabolic disorders	Specific metabolic abnormalities	45	Rare Disease 100K	45
+249	Glaucoma (developmental)	1.47	Ophthalmological disorders	Anterior segment abnormalities	232	Rare Disease 100K	231
+250	Corneal abnormalities	1.14	Ophthalmological disorders	Anterior segment abnormalities	43	Rare Disease 100K	42
+251	Deafness and congenital structural abnormalities	1.37	Hearing and ear disorders	Deafness and congenital structural abnormalities	56	Rare Disease 100K	55
+253	Non-syndromic familial congenital anorectal malformations	1.14	Gastroenterological disorders	Gastrointestinal disorders	53	Rare Disease 100K	51
+254	GI tract tumours	1.27	Tumour syndromes	GI tract	31	Rare Disease 100K	31
+255	Neurofibromatosis Type 1	1.33	Tumour syndromes	Muscle and nerve	30	Rare Disease 100K	30
+258	Arthrogryposis	10.24	Neurology		311	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off	310
+259	Childhood solid tumours cancer susceptibility	1.3	Cancer Programme	Pertinent cancer susceptibility gene panel	85	Cancer Germline 100K	85
+263	Amyotrophic lateral sclerosis/motor neuron disease	1.75	Neurology and neurodevelopmental disorders	Neurodegenerative disorders	38	Rare Disease 100K	38
+265	Early onset dementia (encompassing fronto-temporal dementia and prion disease)	1.85	Neurology and neurodevelopmental disorders	Neurodegenerative disorders	33	Rare Disease 100K	33
+267	Hyperammonaemia	1.22	Metabolic disorders	Urea Cycle disorders	106	Rare Disease 100K	106
+269	Amelogenesis imperfecta	4.4	Musculoskeletal		46	Rare Disease 100K;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	46
+282	Autosomal recessive congenital ichthyosis	1.15	Dermatological disorders	Ichthyoses	15	Rare Disease 100K	15
+283	Cystic kidney disease	9.3	Renal		82	Rare Disease 100K;Component Of Super Panel;GMS signed-off	82
+285	Intellectual disability	11.72	Developmental disorders		2861	Rare Disease 100K;GMS Rare Disease Virtual;Component Of Super Panel;GMS signed-off	1940
+286	Cerebellar hypoplasia	1.87	Neurology and neurodevelopmental disorders	Motor Disorders of the CNS	76	Rare Disease 100K	76
+288	Pain syndromes	1.12	Neurology and neurodevelopmental disorders	Channelopathies	30	Rare Disease 100K	29
+290	Familial rhabdomyosarcoma	1.6	Tumour syndromes	Muscle and nerve	18	Rare Disease 100K	18
+292	Renal tubulopathies	6.1	Renal		67	Rare Disease 100K;Component Of Super Panel;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	67
+293	Neonatal diabetes	6.3	Endocrinology		45	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off	43
+294	Ocular coloboma	1.52	Ophthalmological disorders	Ocular malformations	65	Rare Disease 100K	64
+296	Non-CF bronchiectasis	1.32	Ciliopathies	Respiratory ciliopathies	18	Rare Disease 100K	18
+302	Undiagnosed metabolic disorders	1.645	Metabolic disorders	Specific metabolic abnormalities	752	Rare Disease 100K	717
+305	Familial cicatricial alopecia	1.6	Dermatological disorders	Skin adnexa disorders	25	Rare Disease 100K	25
+307	Retinal disorders	9.19	Ophthalmology		461	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off	266
+308	Congenital hyperinsulinism	3.1	Endocrinology		24	Rare Disease 100K;GMS Rare Disease Virtual;GMS Rare Disease;GMS signed-off	24
+309	Skeletal dysplasia	10.26	Musculoskeletal		645	Rare Disease 100K;GMS Rare Disease Virtual;Component Of Super Panel;GMS signed-off	642
+312	Familial hypoparathyroidism	3.7	Endocrinology		10	Rare Disease 100K;GMS Rare Disease Virtual;GMS Rare Disease;GMS signed-off	10
+314	Extreme early-onset hypertension	1.23	Renal and urinary tract disorders	Disorders of function	27	Rare Disease 100K	27
+315	Intracerebral calcification disorders	1.37	Neurology and neurodevelopmental disorders	Parenchymal brain disorders	33	Rare Disease 100K	32
+318	Familial prostate cancer	1.4			14	Rare Disease 100K	14
+384	Limb disorders	9.1	Musculoskeletal		274	Rare Disease 100K;GMS Rare Disease Virtual;Component Of Super Panel;GMS signed-off	272
+385	Neonatal cholestasis	1.29	Gastroenterological disorders	Liver disease	94	Rare Disease 100K	94
+386	Pancreatitis	3.7	Gastrohepatology		18	Rare Disease 100K;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	17
+391	Adult solid tumours for rare disease	1.42	Tumour syndromes	Tumour syndromes	58	Rare Disease 100K	58
+394	Familial Meniere Disease	1.4	Hearing and ear disorders	Other hearing and ear disorders	130	Rare Disease 100K	129
+398	Primary immunodeficiency or monogenic inflammatory bowel disease	9.112	Immunology		635	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	624
+402	Early onset or syndromic epilepsy	9.94	Neurology		918	Rare Disease 100K;GMS Rare Disease Virtual;GMS signed-off;Component Of Super Panel	756
+407	Haematological malignancies for rare disease	1.19	Tumour syndromes	Tumour syndromes	89	Rare Disease 100K	87
+466	Hereditary ataxia, adult onset	9.15	Neurology		257	Component Of Super Panel;GMS signed-off	201
+467	Likely inborn error of metabolism	9.38	Metabolic		972	GMS Rare Disease Virtual;Component Of Super Panel;GMS signed-off	935
+472	Monogenic diabetes	3.27	Endocrinology		84	GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	83
+474	Neurodegenerative disorders, adult onset	9.27	Neurology		433	GMS signed-off;GMS Rare Disease Virtual;Component Of Super Panel	430
+476	White matter disorders and cerebral calcification - childhood onset	8.13	Neurology		252	Component Of Super Panel;GMS signed-off	250
+477	Ataxia and cerebellar anomalies - childhood onset	9.41	Neurology		330	Component Of Super Panel;GMS signed-off	326
+478	Fetal anomalies	8.26	Fetal (including NIPD)		2718	GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	2700
+479	Paediatric disorders - additional genes	8.25	Developmental disorders		99	Component Of Super Panel;GMS signed-off	99
+480	Familial hyperparathyroidism or Hypocalciuric hypercalcaemia	3.11	Endocrinology		11	GMS Rare Disease Virtual;GMS Rare Disease;GMS signed-off;Rare Disease 100K	11
+482	Hypophosphataemia or rickets	4.5	Endocrinology		18	GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	18
+483	Pituitary hormone deficiency	4.13	Endocrinology		65	GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	65
+484	DDG2P	8.2			2551	Component Of Super Panel;GMS signed-off	2537
+502	Hereditary systemic amyloidosis	1.31	Renal		12	GMS Rare Disease;GMS signed-off;Component Of Super Panel;GMS Rare Disease Virtual	12
+504	Inherited polyposis and early onset colorectal cancer - germline testing	4.3	Inherited cancer		19	GMS Rare Disease;GMS Rare Disease Virtual;GMS signed-off	19
+506	Progressive cardiac conduction disease	2.18	Cardiology		22	GMS Rare Disease;GMS Rare Disease Virtual;Component Of Super Panel;GMS signed-off	22
+508	Fanconi anaemia or Bloom syndrome	2.18	Haematology		24	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	24
+509	Structural eye disease	5.1	Ophthalmology		503	GMS signed-off;GMS Rare Disease Virtual	330
+511	Albinism or congenital nystagmus	4.13	Ophthalmology		50	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	44
+514	Intestinal failure or congenital diarrhoea	3.18	Gastrohepatology		50	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	50
+515	Iron metabolism disorders - NOT common HFE mutations	4.4	Haematology		27	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	27
+516	Thrombophilia with a likely monogenic cause	3.3	Haematology		21	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	21
+518	Rare anaemia	4.1	Haematology		104	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	104
+519	Cytopenia - NOT Fanconi anaemia	5.8	Haematology		141	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	138
+521	Inherited renal cancer	1.31	Inherited cancer		18	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	18
+522	Familial melanoma	2.16	Inherited cancer		10	GMS Rare Disease;GMS signed-off	10
+524	Inherited pancreatic cancer	3.5	Inherited cancer		13	GMS Rare Disease;GMS Rare Disease Virtual;GMS signed-off	13
+525	Inherited predisposition to acute myeloid leukaemia (AML)	3.11	Haematology		16	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	15
+526	Neuronal ceroid lipofuscinosis	3.5	Metabolic		14	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	14
+527	Familial Chylomicronaemia Syndrome	3.7	Lipids		10	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	10
+528	Glycogen storage disease	2.9	Metabolic		29	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	29
+529	Lysosomal storage disorder	3.11	Metabolic		56	GMS Rare Disease Virtual;GMS Rare Disease;GMS signed-off	56
+531	Pyruvate dehydrogenase (PDH) deficiency	1.44	Mitochondrial		26	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	26
+532	Mitochondrial liver disease	1.17	Mitochondrial		11	GMS Rare Disease;GMS signed-off	11
+533	Mitochondrial DNA maintenance disorder	3.11	Mitochondrial		28	GMS Rare Disease;GMS signed-off	28
+534	Mitochondrial disorder with complex I deficiency	4.3	Mitochondrial		51	GMS Rare Disease;GMS signed-off	51
+536	Mitochondrial disorder with complex III deficiency	2.14	Mitochondrial		15	GMS Rare Disease;GMS signed-off	15
+537	Mitochondrial disorder with complex IV deficiency	5.5	Mitochondrial		41	GMS Rare Disease;GMS signed-off	41
+538	Mitochondrial disorder with complex V deficiency	3.7	Mitochondrial		20	GMS Rare Disease;GMS signed-off	20
+539	Possible mitochondrial disorder, nuclear genes	5.25	Mitochondrial		386	GMS Rare Disease;GMS signed-off	386
+540	Dystonia, chorea or related movement disorder, adult onset	6.11	Neurology		207	Component Of Super Panel;GMS signed-off	150
+541	Paroxysmal central nervous system disorders	4.9	Neurology		86	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	82
+542	Skeletal muscle channelopathy	3.1	Neurology		17	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	15
+543	Bardet Biedl syndrome	2.19	Ophthalmology		25	GMS Rare Disease;GMS Rare Disease Virtual;GMS signed-off	25
+544	Cholestasis	4.19	Gastrohepatology		84	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	84
+545	Bleeding and platelet disorders	4.17	Haematology		119	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	118
+546	Severe insulin resistance and lipodystrophy syndromes	5.4	Endocrinology		35	GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	35
+548	Tubulointerstitial kidney disease	3.35	Renal		30	Component Of Super Panel;GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	28
+549	Laterality disorders and isomerism	5.4	Respiratory		69	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	69
+550	Respiratory ciliopathies including non-CF bronchiectasis	5.4	Respiratory		92	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	92
+553	Ectodermal dysplasia	5.15	Dermatology		93	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	92
+554	Epidermolysis bullosa and congenital skin fragility	2.17	Dermatology		47	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	46
+555	Ichthyosis and erythrokeratoderma	4.21	Dermatology		81	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	79
+556	Palmoplantar keratodermas	4.2	Dermatology		75	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	74
+558	Multiple monogenic benign skin tumours	2.8	Dermatology		46	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	46
+559	Pigmentary skin disorders	5.19	Dermatology		136	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	135
+560	Cutaneous photosensitivity with a likely genetic cause	3.22	Dermatology		13	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	13
+563	Vascular skin disorders	2.8	Dermatology		37	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	37
+564	Mosaic skin disorders - Deep sequencing	4.1	Dermatology		60	GMS Rare Disease;GMS signed-off	60
+565	Rare genetic inflammatory skin disorders	4.26	Dermatology		75	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	74
+567	Hereditary spastic paraplegia, adult onset	6.14	Neurology		109	GMS signed-off;Component Of Super Panel	109
+568	Hereditary spastic paraplegia, childhood onset	9.14	Neurology		172	GMS Rare Disease Virtual;GMS signed-off	170
+579	Leukodystrophy, adult onset	7.14	Neurology		99	GMS signed-off;GMS Rare Disease Virtual	98
+648	Endocrine neoplasia	3.9	Endocrinology		15	GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	15
+649	Inherited phaeochromocytoma and paraganglioma excluding NF1	5.1	Endocrinology		18	GMS signed-off;GMS Rare Disease;GMS Rare Disease Virtual	18
+650	Hypogonadotropic hypogonadism (GMS)	5.7	Endocrinology		48	GMS Rare Disease Virtual;GMS signed-off;GMS Rare Disease	48
+652	Dilated and arrhythmogenic cardiomyopathy	4.11	Cardiology		66	GMS Rare Disease;Component Of Super Panel;GMS signed-off;GMS Rare Disease Virtual	66
+653	Polycystic liver disease	1.34	Gastrohepatology		20	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	19
+658	Corneal dystrophy	4.12	Ophthalmology		28	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	27
+700	Thoracic aortic aneurysm or dissection (GMS)	5.8	Cardiology		71	GMS Rare Disease;GMS Rare Disease Virtual;GMS signed-off	71
+722	Ophthalmological ciliopathies	6.2	Ophthalmology		97	Component Of Super Panel;GMS signed-off	93
+724	Neurological ciliopathies	7.2	Neurology		69	Component Of Super Panel;GMS signed-off	54
+725	Renal ciliopathies	5.2	Renal		107	Component Of Super Panel;GMS signed-off	98
+726	Skeletal ciliopathies	7.2	Musculoskeletal		71	Component Of Super Panel;GMS signed-off	71
+734	Sarcoma susceptibility	1.82	Cancer susceptibility		44	GMS Cancer Germline Virtual;GMS signed-off	37
+736	Neurological segmental overgrowth	3.6	Neurology		13	Component Of Super Panel;GMS signed-off	13
+749	Paediatric or syndromic cardiomyopathy	8.14	Cardiology		255	GMS Rare Disease;GMS Rare Disease Virtual;GMS signed-off;Component Of Super Panel	192
+846	Hereditary neuropathy or pain disorder	8.38	Neurology		375	GMS signed-off;GMS Rare Disease Virtual	312
+847	Dystonia, chorea or related movement disorder, childhood onset	8.19	Neurology		987	GMS signed-off;GMS Rare Disease Virtual	596
+943	Osteopetrosis	2.3	Musculoskeletal		20	GMS Rare Disease Virtual;GMS Rare Disease;GMS signed-off	20
+1075	Autoinflammatory disorders	3.21	Immunology		48	GMS Rare Disease Virtual;GMS Rare Disease;GMS signed-off	48
+1141	Acute rhabdomyolysis	3.1	Neurology		69	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	57
+1174	Pulmonary Fibrosis, Familial	1.18	Respiratory		27	GMS Rare Disease;GMS signed-off;GMS Rare Disease Virtual	26
+1217	Paediatric pseudo-obstruction syndrome	2.8	Gastrohepatology		56	GMS Rare Disease Virtual;GMS Rare Disease;GMS signed-off	54
+1471	Monogenic short stature	2.15	Endocrinology		176	GMS Rare Disease;GMS Rare Disease Virtual;GMS signed-off	131
+1537	Unexplained young onset end-stage renal disease - additional genes	2.7	Renal		60	Component Of Super Panel;GMS signed-off	38
+1636	Embryonal tumour of possible germline origin	1.3	Inherited cancer		26	GMS Rare Disease;GMS Rare Disease Virtual;GMS signed-off	26
+1637	Sarcoma of possible germline origin	1.3	Inherited cancer		13	GMS Rare Disease;GMS Rare Disease Virtual;GMS signed-off	13
+1638	Childhood interstitial lung disease	1.13	Respiratory		38	GMS Rare Disease;GMS Rare Disease Virtual;GMS signed-off	32

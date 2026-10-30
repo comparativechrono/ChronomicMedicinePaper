@@ -1,0 +1,56 @@
+# Analysis parameters for the chronomic medicine analysis.
+# Every script reads this file; change values here, not in code.
+
+seed: 20260101
+
+gwas:
+  # Jones et al. 2019 Nat Commun 10:343 (UK Biobank + 23andMe meta-analysis, n = 697,828)
+  lead_snps_source: "data/raw/gwas/jones2019_esm/jones2019_SupplementaryData1.xlsx"
+  # UK Biobank-only full summary statistics used for gene-based / gene-set analyses
+  sumstats_primary: "data/raw/gwas/GCST007576_chronotype_UKB.txt.gz"   # continuous chronotype, n = 449,734
+  sumstats_primary_n: 449734
+  sumstats_secondary: "data/raw/gwas/GCST007565_morning_person_UKB.txt.gz"  # binary morning person, n = 403,195
+  sumstats_secondary_n: 403195
+
+ld:
+  reference: "data/raw/ldref/g1000_eur"   # 1000 Genomes phase 3, 503 European samples, GRCh37
+  window_kb: 1000                        # search window either side of the lead variant
+  locus_r2: 0.6                          # primary locus definition
+  locus_r2_sensitivity: [0.5, 0.8]
+  buddy_r2: 0.5                          # LD 'buddies' used for null matching
+  min_maf: 0.01
+
+loci:
+  flank_kb: 10                           # padding added to each LD-defined interval
+  merge_overlapping: true
+  # regions excluded in sensitivity analyses (GRCh37)
+  mhc: {chrom: "6", start: 25000000, end: 34000000}
+  inv17q21: {chrom: "17", start: 43500000, end: 44900000}
+
+genes:
+  gtf: "data/raw/genes/gencode.v48lift37.basic.annotation.gtf.gz"
+  biotypes: ["protein_coding"]
+  autosomes_and_x: true
+
+null_model:
+  n_permutations: 10000
+  pool_size: 400000                      # random common variants scored for matching
+  # matching features (quantile bins) -- SNPsnap-style
+  maf_bins: 10
+  buddy_bins: 10
+  gene_count_bins: [0, 1, 2, 3, 4, 6, 9, 14, 1000]
+  distance_bins: 10
+
+magma:
+  window_up_kb: 35
+  window_down_kb: 10
+  gene_model: "snp-wise=mean"
+
+mendelian:
+  # broad: any gene with a Mendelian disease association (HPO/OMIM or Orphanet)
+  # high-confidence: ClinGen Definitive/Strong/Moderate OR Orphanet 'Assessed' disease-causing
+  clingen_levels: ["Definitive", "Strong", "Moderate"]
+  min_genes_per_set: 10
+  max_genes_per_set: 5000
+
+fdr_alpha: 0.05

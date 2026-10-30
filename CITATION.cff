@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this code or the chronomic gene catalogue, please cite it as below. The article citation will be added on publication."
+title: "Towards chronomic medicine: Mendelian disease genes and rare-variant convergence at chronotype loci (analysis code)"
+authors:
+  - family-names: Malik
+    given-names: Basimah T
+  - family-names: Hearn
+    given-names: Timothy J
+version: 1.0.0
+date-released: 2026-10-30
+license: MIT
+repository-code: "https://github.com/comparativechrono/ChronomicMedicinePaper"
+keywords:
+  - chronomic medicine
+  - chronotype
+  - circadian rhythms
+  - Mendelian disease
+  - GWAS
+  - rare variants

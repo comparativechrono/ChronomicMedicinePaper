@@ -1,0 +1,28 @@
+2026-10-30 22:15:15,933 05b_disease_panels INFO: panels tested: 248 (of 433 public panels)
+2026-10-30 22:15:25,775 05b_disease_panels INFO: 
+                                                             panel_name  n_genes_universe  obs_loci  exp_primary  p_primary  q_primary  p_r2_0.8  p_exclude_MHC_17q21
+79   Rare syndromic craniosynostosis or isolated multisuture synostosis               195        15     4.056737   0.000017   0.004197  0.000069             0.000052
+104                                          Neurotransmitter disorders                18         4     0.204825   0.000051   0.006356  0.000016             0.000043
+171                                                               DDG2P              2537        94    67.242184   0.000090   0.007429  0.001204             0.000080
+37                                                             Clefting               313        18     7.549041   0.000603   0.037362  0.018977             0.000745
+64                                                        Fetal hydrops               111        10     3.052677   0.000858   0.042551  0.003483             0.003954
+158                                   Early onset or syndromic epilepsy               756        39    23.949229   0.001136   0.046950  0.006288             0.000835
+135                                             Intellectual disability              1940        73    56.238876   0.006911   0.240900  0.084456             0.006129
+166                                                     Fetal anomalies              2700        84    66.830919   0.007771   0.240900  0.016183             0.009069
+15                                       Anophthalmia or microphthalmia                63         6     1.903534   0.012189   0.335877  0.016158             0.010836
+123                    Deafness and congenital structural abnormalities                55         5     1.443604   0.014678   0.337554  0.059169             0.014970
+199          Dystonia, chorea or related movement disorder, adult onset               150        10     4.513563   0.014972   0.337554  0.046295             0.014807
+33                                                     Long QT syndrome                23         4     0.976031   0.016931   0.347555  0.015724             0.016222
+58                                           IUGR and IGF abnormalities               110         9     4.030040   0.018219   0.347555  0.035580             0.021680
+165                   Ataxia and cerebellar anomalies - childhood onset               326        21    13.173472   0.021601   0.376867  0.385211             0.029610
+42                                Malformations of cortical development               146         9     4.134326   0.023674   0.376867  0.128553             0.016433
+152                                                      Limb disorders               272        13     7.012347   0.024314   0.376867  0.156550             0.022078
+176                                              Structural eye disease               330        17    10.298801   0.029189   0.385478  0.096450             0.029046
+184                                                   Familial melanoma                10         2     0.303405   0.036507   0.385478  1.000000             0.035534
+243                                             Monogenic short stature               131         8     3.827475   0.036656   0.385478  0.023993             0.039172
+151                                            Familial prostate cancer                14         2     0.315895   0.038142   0.385478  0.191160             0.038230
+8                                                     Hereditary ataxia               166        13     7.542912   0.039047   0.385478  0.356566             0.035843
+178                          Intestinal failure or congenital diarrhoea                50         4     1.302320   0.042015   0.385478  0.098382             0.038559
+108                                                 Congenital myopathy               141         8     3.896891   0.042749   0.385478  0.282896             0.028501
+160                                      Hereditary ataxia, adult onset               201        14     8.456376   0.043341   0.385478  0.354309             0.072739
+50                                                Peroxisomal disorders                38         3     0.785670   0.043858   0.385478  0.157641             0.046717

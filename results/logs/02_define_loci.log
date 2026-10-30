@@ -1,0 +1,5 @@
+2026-10-30 19:08:26,933 02_define_loci INFO: lead variants: 351
+2026-10-30 19:09:04,226 02_define_loci INFO: 10 leads absent from panel: rs2506089, rs146820337, rs6718511, rs4550782, rs10610420, rs67169439, rs34125199, rs2396719, rs60521023, rs12436039
+2026-10-30 19:09:50,352 02_define_loci INFO: LD index assignment: {'lead': 341, 'best_ukb_within_100kb': 8, 'same_position': 2}
+2026-10-30 19:10:04,298 02_define_loci INFO: LD pairs (r2>=0.5): 25951
+2026-10-30 19:10:04,573 02_define_loci INFO: summary: {'n_leads_input': 351, 'n_leads_mapped': 351, 'index_types': {'lead': 341, 'best_ukb_within_100kb': 8, 'same_position': 2}, 'n_regions': 351, 'n_multi_lead_regions': 0, 'median_region_kb': 83.903, 'regions_with_no_gene': 90, 'median_genes_per_region': 1.0, 'n_unique_genes_r60': 761}
