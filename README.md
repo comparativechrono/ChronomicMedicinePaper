@@ -53,6 +53,30 @@ manuscript/                 manuscript template, generated tables, bibliography,
 
 `data/raw/`, `data/interim/` and `bin/` are created by the pipeline and are not tracked.
 
+## Manuscript and display items
+
+| Item | File |
+|---|---|
+| Manuscript (Word) | `manuscript/Malik_Hearn_Towards_chronomic_medicine_2026.docx`, built from `manuscript/manuscript.template.md` |
+| Figure 1. Study design and the chronomic medicine framework | `results/figures/Fig1_study_design.pdf` / `.png` |
+| Figure 2. Enrichment of gene sets at chronotype loci | `results/figures/Fig2_locus_enrichment.pdf` / `.png` |
+| Figure 3. Evidence for chronomic candidate genes | `results/figures/Fig3_candidate_genes.pdf` / `.png` |
+| Figure 4. Monoamine synthesis and storage genes (post hoc) | `results/figures/Fig4_monoamine_pathway.pdf` / `.png` |
+| Figure 5. Convergence of rare-variant burden with chronotype loci | `results/figures/Fig5_rare_common_convergence.pdf` / `.png` |
+| Supplementary Figure S1. Chronotype and QT-interval association at *KCNH2* | `results/figures/FigS1_kcnh2_coloc.pdf` / `.png` |
+| Table 1. Locus- and gene-level enrichment of selected gene sets | in the manuscript; source `manuscript/tables/table1.md` |
+| Table 2. Selected chronomic candidate genes | in the manuscript; source `manuscript/tables/table2.md` |
+| Table 3. PanelApp disease panels enriched at chronotype loci | in the manuscript; source `manuscript/tables/table3.md` |
+| Supplementary Table S1. Chronotype loci, LD intervals, genes and Open Targets annotations | `results/supplementary/Supplementary_Table_S1_chronotype_loci.xlsx` |
+| Supplementary Table S2. Gene universe and gene sets, including PanelApp panels | `results/supplementary/Supplementary_Table_S2_gene_sets.xlsx` |
+| Supplementary Table S3. Locus- and gene-level enrichment, relative tests and PanelApp screen | `results/supplementary/Supplementary_Table_S3_enrichment.xlsx` |
+| Supplementary Table S4. Exome burden analyses | `results/supplementary/Supplementary_Table_S4_rare_variant_burden.xlsx` |
+| Supplementary Table S5. Catalogue of Mendelian disease genes at chronotype loci | `results/supplementary/Supplementary_Table_S5_chronomic_gene_catalogue.xlsx` |
+| Supplementary Table S6. *KCNH2* colocalisation and data provenance | `results/supplementary/Supplementary_Table_S6_colocalisation_and_provenance.xlsx` |
+
+Each workbook opens with a "Key" sheet that describes its sheets and columns. The Word build uses copies of the
+figures in `manuscript/figures/`.
+
 ## Reproducing the analysis
 
 Requirements: Linux, Python 3.13 (`pip install -r requirements.txt`), pandoc ≥ 3.1, ~40 GB of free disk

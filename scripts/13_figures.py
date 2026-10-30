@@ -4,10 +4,10 @@
 Fig 1  Study design and the chronomic medicine framework
 Fig 2  Locus-level enrichment against matched null loci, with gene-level (MAGMA) p-values: (A) Mendelian,
        pre-specified, post hoc and control gene sets; (B) HPO organ systems
-Fig 5  Rare/common/Mendelian convergence: (A) exome burden signal by gene group;
-       (B) common-variant (MAGMA) vs rare-variant (burden) gene evidence
 Fig 3  Chronomic candidate genes: evidence grid
 Fig 4  Monoamine synthesis and storage genes at chronotype loci (post hoc)
+Fig 5  Rare/common/Mendelian convergence: (A) exome burden signal by gene group;
+       (B) common-variant (MAGMA) vs rare-variant (burden) gene evidence
 Supp S1  KCNH2 chronotype-QT colocalisation, unconditional and conditional
 """
 from __future__ import annotations
@@ -223,8 +223,8 @@ def fig2():
     save(fig, "Fig2_locus_enrichment")
 
 
-# ======================================================================== Fig 3
-def fig3():
+# ======================================================================== Fig 5
+def fig5():
     B = pd.read_csv(TABLES / "burden_convergence.tsv", sep="\t")
     G = pd.read_csv(TABLES / "burden_gene_level.tsv", sep="\t", index_col=0)
     mg = pd.read_csv(INTERIM / "magma" / "chronotype.genes.out", sep=r"\s+").set_index("GENE")
@@ -276,8 +276,8 @@ def fig3():
     save(fig, "Fig5_rare_common_convergence")
 
 
-# ======================================================================== Fig 4
-def fig4():
+# ======================================================================== Fig 3
+def fig3():
     C = pd.read_csv(TABLES / "chronomic_gene_catalogue.tsv", sep="\t")
     keep = C[C.sleep_disturbance | C.monoamine_intd | C.prolonged_QT | C.circadian_hpo | C.hypertrophic_cm].copy()
     keep = keep.drop_duplicates("symbol")
@@ -320,8 +320,8 @@ def fig4():
     save(fig, "Fig3_candidate_genes")
 
 
-# ======================================================================== Fig 5
-def fig5():
+# ======================================================================== Fig 4
+def fig4():
     fig, ax = plt.subplots(figsize=(7.2, 3.6))
     ax.set_xlim(0, 104); ax.set_ylim(-11.5, 40); ax.axis("off")
     HIT = {"GCH1", "DDC", "DNAJC12", "SLC18A2"}
