@@ -1,0 +1,3 @@
+2026-10-30 19:08:05,661 04_rhythmicity INFO: mouse atlas: 12 tissues; rhythmic genes per tissue: {'Adr': 1121, 'Aor': 959, 'BFat': 3134, 'Bstm': 799, 'Cer': 942, 'Hrt': 1716, 'Hyp': 315, 'Kid': 5144, 'Liv': 5319, 'Lun': 4154, 'Mus': 827, 'WFat': 938}
+2026-10-30 19:08:25,855 04_rhythmicity INFO: summary {'mouse_genes_tested': 16183, 'mouse_rhythmic_any': 10603, 'mouse_rhythmic_ge3': 3224, 'gtex_genes_tested': 17888, 'gtex_daynight_any': 1652}
+2026-10-30 19:08:26,087 04_rhythmicity INFO: added rhythmicity gene sets: {'RHY_MOUSE_GE3': 3224, 'RHY_GTEX_DAYNIGHT': 1652}

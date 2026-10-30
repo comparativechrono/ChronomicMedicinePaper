@@ -1,0 +1,10 @@
+{
+  "n_genes": 18808,
+  "bonferroni": 2.6584432156529137e-06,
+  "exome_wide_significant": [
+    "PER3",
+    "PER2",
+    "MTNR1B"
+  ],
+  "median_p_burden": 0.5567095545308978
+}

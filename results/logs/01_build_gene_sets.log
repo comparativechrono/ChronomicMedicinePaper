@@ -1,0 +1,55 @@
+2026-10-30 19:07:54,111 01_build_gene_sets INFO: protein-coding universe: 20145 genes (autosomes + X)
+2026-10-30 19:07:55,477 01_build_gene_sets INFO: gene-disease links: 16465 pairs, 5049 genes
+2026-10-30 19:08:03,238 01_build_gene_sets INFO: 
+                 set_id            family                                                                        label  n_genes  tested
+0              MEND_ANY  mendelian_source                                Any Mendelian disease gene (OMIM or Orphanet)     5001    True
+1             MEND_OMIM  mendelian_source                                                  OMIM Mendelian disease gene     4801    True
+2            MEND_ORPHA  mendelian_source                                     Orphanet disease-causing gene (assessed)     4111    True
+3          MEND_CLINGEN  mendelian_source                     ClinGen gene-disease validity Moderate/Strong/Definitive     2486    True
+4           MEND_HICONF  mendelian_source       High-confidence Mendelian (ClinGen M/S/D or in both OMIM and Orphanet)     4138    True
+5                INH_AD       inheritance                               Mendelian gene with autosomal dominant disease     1857    True
+6                INH_AR       inheritance                              Mendelian gene with autosomal recessive disease     3168    True
+7                INH_XL       inheritance                                         Mendelian gene with X-linked disease      258    True
+8         SYS_HP0025354        hpo_system                                                  Abnormal cellular phenotype      687    True
+9         SYS_HP0001871        hpo_system                               Abnormality of blood and blood-forming tissues     1384    True
+10        SYS_HP0000152        hpo_system                                                  Abnormality of head or neck     3224    True
+11        SYS_HP0040064        hpo_system                                                         Abnormality of limbs     2404    True
+12        SYS_HP0001939        hpo_system                                        Abnormality of metabolism/homeostasis     2498    True
+13        SYS_HP0001197        hpo_system                                 Abnormality of prenatal development or birth      972    True
+14        SYS_HP0000769        hpo_system                                                    Abnormality of the breast      400    True
+15        SYS_HP0001626        hpo_system                                     Abnormality of the cardiovascular system     2652    True
+16        SYS_HP0025031        hpo_system                                          Abnormality of the digestive system     2820    True
+17        SYS_HP0000598        hpo_system                                                       Abnormality of the ear     2342    True
+18        SYS_HP0000818        hpo_system                                          Abnormality of the endocrine system     1311    True
+19        SYS_HP0000478        hpo_system                                                       Abnormality of the eye     2984    True
+20        SYS_HP0000119        hpo_system                                      Abnormality of the genitourinary system     2524    True
+21        SYS_HP0002715        hpo_system                                             Abnormality of the immune system     1933    True
+22        SYS_HP0001574        hpo_system                                                Abnormality of the integument     2414    True
+23        SYS_HP0033127        hpo_system                                    Abnormality of the musculoskeletal system     3638    True
+24        SYS_HP0000707        hpo_system                                            Abnormality of the nervous system     3837    True
+25        SYS_HP0002086        hpo_system                                        Abnormality of the respiratory system     1999    True
+26        SYS_HP0045027        hpo_system                                           Abnormality of the thoracic cavity       32    True
+27        SYS_HP0001608        hpo_system                                                     Abnormality of the voice      397    True
+28        SYS_HP0025142        hpo_system                                                       Constitutional symptom     1055    True
+29        SYS_HP0001507        hpo_system                                                           Growth abnormality     2447    True
+30        SYS_HP0002664        hpo_system                                                                     Neoplasm      830    True
+31        HPO_HP0002360       hpo_apriori                                                            Sleep disturbance      544    True
+32        HPO_HP0011675       hpo_apriori                                                                   Arrhythmia      460    True
+33        HPO_HP0001657       hpo_apriori                                                        Prolonged QT interval       49    True
+34        HPO_HP0001638       hpo_apriori                                                               Cardiomyopathy      535    True
+35        HPO_HP0001639       hpo_apriori                                                  Hypertrophic cardiomyopathy      254    True
+36        HPO_HP0004431       hpo_apriori                                 Reduced circulating complement concentration       28    True
+37        HPO_HP0002721       hpo_apriori                                                             Immunodeficiency      191    True
+38        HPO_HP0001263       hpo_apriori                                                   Global developmental delay     1972    True
+39        HPO_HP0001249       hpo_apriori                                                      Intellectual disability     1955    True
+40        HPO_HP0001250       hpo_apriori                                                                      Seizure     1908    True
+41        HPO_HP0004322       hpo_apriori                                                                Short stature     1339    True
+42        HPO_CIRCADIAN       hpo_apriori     Circadian phenotype (sleep-wake cycle disturbance or abnormal melatonin)       43    True
+43  CUR_COMPLEMENT_IUIS   curated_apriori                       Complement deficiency genes (IUIS 2022 classification)       33    True
+44                  NDD     hpo_auxiliary   Neurodevelopmental (global developmental delay or intellectual disability)     2513    True
+45      HPO_SLEEP_noNDD     hpo_auxiliary  Sleep disturbance, excluding genes with developmental delay, ID or seizures       72    True
+46   EXP_INTD_MONOAMINE       exploratory          Inherited monoamine neurotransmitter disorder genes (iNTD; curated)       12    True
+47          EXP_CSF_HVA       exploratory                                 Decreased CSF homovanillic acid (HP:0003785)       10    True
+48         GO_CIRCADIAN  positive_control                            GO: circadian rhythm (GO:0007623 and descendants)      202    True
+49             LOEUF_D1        constraint                    Most LoF-constrained decile (gnomAD v2.1.1 LOEUF < 0.263)     1831    True
+50            LOEUF4_D1        constraint                      Most LoF-constrained decile (gnomAD v4.1 LOEUF < 0.395)     1796    True

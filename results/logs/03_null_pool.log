@@ -1,0 +1,25 @@
+2026-10-30 19:10:10,853 03_null_pool INFO: candidate variants: 6817968 (excluded 1995804 within 1 Mb of leads); pool: 400000
+2026-10-30 19:10:18,812 03_null_pool INFO: chr1: 29500 pool variants, 1866486 LD pairs
+2026-10-30 19:10:26,807 03_null_pool INFO: chr2: 30451 pool variants, 2061520 LD pairs
+2026-10-30 19:10:33,970 03_null_pool INFO: chr3: 25047 pool variants, 1951403 LD pairs
+2026-10-30 19:10:43,108 03_null_pool INFO: chr4: 30762 pool variants, 2565766 LD pairs
+2026-10-30 19:10:50,247 03_null_pool INFO: chr5: 26446 pool variants, 1982707 LD pairs
+2026-10-30 19:10:57,724 03_null_pool INFO: chr6: 23902 pool variants, 1973298 LD pairs
+2026-10-30 19:11:04,799 03_null_pool INFO: chr7: 23886 pool variants, 1766265 LD pairs
+2026-10-30 19:11:11,429 03_null_pool INFO: chr8: 21089 pool variants, 1615805 LD pairs
+2026-10-30 19:11:16,142 03_null_pool INFO: chr9: 16492 pool variants, 1003794 LD pairs
+2026-10-30 19:11:22,087 03_null_pool INFO: chr10: 19340 pool variants, 1702352 LD pairs
+2026-10-30 19:11:28,920 03_null_pool INFO: chr11: 19253 pool variants, 2744742 LD pairs
+2026-10-30 19:11:33,906 03_null_pool INFO: chr12: 18393 pool variants, 1130480 LD pairs
+2026-10-30 19:11:38,045 03_null_pool INFO: chr13: 14770 pool variants, 974476 LD pairs
+2026-10-30 19:11:41,719 03_null_pool INFO: chr14: 12660 pool variants, 852219 LD pairs
+2026-10-30 19:11:45,137 03_null_pool INFO: chr15: 12207 pool variants, 825003 LD pairs
+2026-10-30 19:11:49,214 03_null_pool INFO: chr16: 11630 pool variants, 567763 LD pairs
+2026-10-30 19:11:52,139 03_null_pool INFO: chr17: 9448 pool variants, 488680 LD pairs
+2026-10-30 19:11:55,241 03_null_pool INFO: chr18: 9752 pool variants, 555640 LD pairs
+2026-10-30 19:11:58,277 03_null_pool INFO: chr19: 8860 pool variants, 603067 LD pairs
+2026-10-30 19:12:00,899 03_null_pool INFO: chr20: 9001 pool variants, 463546 LD pairs
+2026-10-30 19:12:03,157 03_null_pool INFO: chr21: 7080 pool variants, 352769 LD pairs
+2026-10-30 19:12:05,134 03_null_pool INFO: chr22: 5235 pool variants, 237025 LD pairs
+2026-10-30 19:12:08,942 03_null_pool INFO: chrX: 14796 pool variants, 1641414 LD pairs
+2026-10-30 19:12:09,256 03_null_pool INFO: pool features written: 400000 variants; median buddies 35; median genes (r2>=0.6) 1.0

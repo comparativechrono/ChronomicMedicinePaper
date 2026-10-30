@@ -1,0 +1,16 @@
+2026-10-30 16:38:43,425 08_fetch_opentargets INFO: GCST007576 Chronotype n=449734: 308 credible sets
+2026-10-30 16:39:02,032 08_fetch_opentargets INFO: GCST007565 Morning person n=403195: 97 credible sets
+2026-10-30 16:39:08,100 08_fetch_opentargets INFO: GCST90691736 Morning/evening person (chronotype) (UKB data field 1180) n=375390: 165 credible sets
+2026-10-30 16:39:18,619 08_fetch_opentargets INFO: details fetched for 0/570 credible sets
+2026-10-30 16:40:06,265 08_fetch_opentargets INFO: details fetched for 50/570 credible sets
+2026-10-30 16:40:53,020 08_fetch_opentargets INFO: details fetched for 100/570 credible sets
+2026-10-30 16:41:40,531 08_fetch_opentargets INFO: details fetched for 150/570 credible sets
+2026-10-30 16:42:28,702 08_fetch_opentargets INFO: details fetched for 200/570 credible sets
+2026-10-30 16:43:18,350 08_fetch_opentargets INFO: details fetched for 250/570 credible sets
+2026-10-30 16:44:02,718 08_fetch_opentargets INFO: details fetched for 300/570 credible sets
+2026-10-30 16:44:49,506 08_fetch_opentargets INFO: details fetched for 350/570 credible sets
+2026-10-30 16:45:37,178 08_fetch_opentargets INFO: details fetched for 400/570 credible sets
+2026-10-30 16:46:27,397 08_fetch_opentargets INFO: details fetched for 450/570 credible sets
+2026-10-30 16:47:10,331 08_fetch_opentargets INFO: details fetched for 500/570 credible sets
+2026-10-30 16:47:55,857 08_fetch_opentargets INFO: details fetched for 550/570 credible sets
+2026-10-30 16:48:14,518 08_fetch_opentargets INFO: saved 570 credible sets
