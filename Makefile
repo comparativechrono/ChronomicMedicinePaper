@@ -3,10 +3,10 @@
 #        make <target>   (single stage; stages assume earlier ones have run)
 PY ?= python3
 
-.PHONY: all download genesets loci null rhythm enrichment magma opentargets burden coloc \
+.PHONY: all download genesets loci null rhythm enrichment panels magma opentargets burden coloc \
         catalogue figures supptables numbers manuscript test clean
 
-all: download genesets loci null rhythm enrichment magma opentargets burden coloc \
+all: download genesets loci null rhythm enrichment panels magma opentargets burden coloc \
      catalogue figures supptables numbers manuscript test
 
 download:    ; $(PY) scripts/00_download_data.py
@@ -15,6 +15,9 @@ loci:        ; $(PY) scripts/02_define_loci.py
 null:        ; $(PY) scripts/03_null_pool.py
 rhythm:      ; $(PY) scripts/04_rhythmicity.py          # appends rhythmicity gene sets; run after genesets
 enrichment:  ; $(PY) scripts/05_enrichment.py
+panels:                                                  # disease-group screen (PanelApp); exploratory
+	$(PY) scripts/01b_fetch_panelapp.py
+	$(PY) scripts/05b_disease_panels.py
 magma:
 	$(PY) scripts/06_magma_genes.py chronotype
 	$(PY) scripts/07_magma_genesets.py

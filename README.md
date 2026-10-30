@@ -79,6 +79,7 @@ cores. The longest steps are the downloads, MAGMA, and the Open Targets API quer
 | Open Targets Platform | 26.09 (GraphQL API) | credible sets, L2G, colocalisation |
 | UK Biobank exome burden (Backman et al. 2021) | GCST90081559–62 (European ancestry, n = 388,330) | rare-variant convergence |
 | QT interval GWAS (Hoffmann et al. 2022) | GCST90165291 | colocalisation at *KCNH2* |
+| Genomics England PanelApp | REST API v1, green genes (retrieved 2026-10-30) | disease-group screen (exploratory) |
 | Mouse circadian atlas (Zhang et al. 2014) | GEO GSE54650 | rhythmic expression |
 | GTEx day–night expression (Wucher et al. 2023) | figshare 10.6084/m9.figshare.21906252 (CC BY 4.0) | day–night expression |
 
