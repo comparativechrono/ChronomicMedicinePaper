@@ -155,8 +155,12 @@ write("Supplementary_Table_S3_enrichment.xlsx", "Supplementary Table S3 - Locus-
        ("PanelApp screen", pa_res, "Genomics England PanelApp disease panels (green genes) at chronotype loci, "
                                    "tested like the gene sets above: observed and expected loci, fold, exact p and "
                                    "Benjamini-Hochberg q across panels for the primary analysis (r2 >= 0.6) and the "
-                                   "sensitivity analyses; genes_in_loci = panel genes in chronotype loci (primary). "
-                                   "magma_*: MAGMA marginal competitive gene-set test, q across panels."),
+                                   "sensitivity analyses (r2 >= 0.5, r2 >= 0.8, MHC/17q21.31 excluded, nearest gene). "
+                                   "rel_NDD_* / rel_INH_AD_* and p_rel_*: relative tests (primary analysis), i.e. "
+                                   "among loci containing a neurodevelopmental or autosomal dominant disease gene, the "
+                                   "fraction that also contain a panel gene, observed vs matched null (10,000 draws). "
+                                   "genes_in_loci = panel genes in chronotype loci (primary). magma_*: MAGMA marginal "
+                                   "competitive gene-set test, q across panels."),
        ("MAGMA monoamine LOO", pd.read_csv(TABLES / "magma_monoamine_leave_one_out.tsv", sep="\t"),
         "Post hoc monoamine set: MAGMA marginal gene-set analysis leaving out each of the four genes in "
         "chronotype loci in turn."),

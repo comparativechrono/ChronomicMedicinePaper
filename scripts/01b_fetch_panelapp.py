@@ -10,10 +10,12 @@ Outputs (data/raw/panelapp/):
   green_genes.tsv   one row per (panel, green gene): symbol, HGNC ID, GRCh37 Ensembl ID, inheritance
   green_genes_raw.json.gz  raw API records (cache)
   meta.json         retrieval time (UTC) and counts
-Both files are recorded in data/manifest.tsv.
+Both files are recorded in data/manifest.tsv. PanelApp changes continuously, so an existing retrieval is
+reused; pass --refresh to fetch the current panels (results may then differ from the manuscript).
 """
 from __future__ import annotations
 
+import argparse
 import datetime as dt
 import gzip
 import json
@@ -54,6 +56,17 @@ def paged(url: str) -> list[dict]:
         time.sleep(0.1)
     return rows
 
+
+ap = argparse.ArgumentParser()
+ap.add_argument("--refresh", action="store_true", help="fetch the current PanelApp instead of reusing the recorded retrieval")
+args = ap.parse_args()
+if all((OUT / f).exists() for f in ("panels.tsv", "green_genes.tsv", "meta.json")) and not args.refresh:
+    # PanelApp changes continuously: reuse the recorded retrieval so that re-runs reproduce the published results
+    log.info("reusing the PanelApp retrieval of %s (pass --refresh to fetch the current panels)",
+             json.load(open(OUT / "meta.json"))["retrieved_utc"])
+    sys.exit(0)
+if args.refresh:
+    (OUT / "green_genes_raw.json.gz").unlink(missing_ok=True)
 
 retrieved = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 panels = paged(f"{API}/panels/")

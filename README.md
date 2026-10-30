@@ -14,12 +14,12 @@ to understand, diagnose and manage disease.
   neurodevelopmental disorders, and for five HPO organ systems, are modestly over-represented within loci, with
   little gene-level (MAGMA) support.
 * **Phenotype-specific convergence is modest.**
-  * Genes for Mendelian disorders with sleep disturbance are over-represented, including among loci that contain
-    dominant or neurodevelopmental disease genes. Most of these genes also cause neurodevelopmental
-    disorders, however, and their gene-level support is nominal.
+  * Genes for Mendelian disorders with sleep disturbance are over-represented, but specificity for sleep is
+    uncertain. Most of these genes also cause neurodevelopmental disorders, genes for other syndromic features
+    (such as craniosynostosis and clefting) show similar excesses, and gene-level support is nominal.
   * In a post hoc analysis, 4 of 12 monoamine neurotransmitter disorder genes (*GCH1*, *DDC*, *DNAJC12*,
     *SLC18A2*) lie in chronotype loci; gene-level support is strongest for *DDC*.
-* **Clinical disease panels.** Of 248 Genomics England PanelApp panels, six are enriched at chronotype loci
+* **Clinical disease panels (post hoc).** Of 248 Genomics England PanelApp panels, six are enriched at chronotype loci
   (FDR < 0.05). One is the independently curated neurotransmitter disorders panel, whose enrichment rests on the
   same four monoamine genes. The other five are broad developmental panels, with little gene-level support. No
   cardiac, immune or sleep-related panel is enriched.
@@ -83,7 +83,7 @@ cores. The longest steps are the downloads, MAGMA, and the Open Targets API quer
 | Open Targets Platform | 26.09 (GraphQL API) | credible sets, L2G, colocalisation |
 | UK Biobank exome burden (Backman et al. 2021) | GCST90081559–62 (European ancestry, n = 388,330) | rare-variant convergence |
 | QT interval GWAS (Hoffmann et al. 2022) | GCST90165291 | colocalisation at *KCNH2* |
-| Genomics England PanelApp | REST API v1, green genes (retrieved 2026-10-30) | clinical disease-panel screen |
+| Genomics England PanelApp | REST API v1, green genes (retrieved 2026-10-30) | clinical disease-panel screen (post hoc) |
 | Mouse circadian atlas (Zhang et al. 2014) | GEO GSE54650 | rhythmic expression |
 | GTEx day–night expression (Wucher et al. 2023) | figshare 10.6084/m9.figshare.21906252 (CC BY 4.0) | day–night expression |
 

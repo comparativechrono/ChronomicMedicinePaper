@@ -71,7 +71,7 @@ if pfile.exists():
     pm.to_csv(TABLES / "magma_panelapp.tsv", sep="\t", index=False)
     log.info("PanelApp panels in MAGMA: %d; p < 0.05: %d", len(pm), int((pm.P < 0.05).sum()))
 else:
-    log.warning("no PanelApp gene sets (run scripts/05b_disease_panels.py first); panel MAGMA skipped")
+    raise SystemExit(f"{pfile} not found: run `make panels` (scripts/01b, 05b) before `make magma`")
 
 R = pd.concat(frames, ignore_index=True)
 R = R.rename(columns={"VARIABLE": "set_id"}) if "VARIABLE" in R.columns else R.rename(columns={"FULL_NAME": "set_id"})
