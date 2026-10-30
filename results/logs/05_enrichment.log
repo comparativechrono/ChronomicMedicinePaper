@@ -1,7 +1,7 @@
-2026-10-30 21:01:52,678 05_enrichment INFO: [primary] loci=351 matching={'genes+maf+buddies+dist': 317, 'genes+maf+buddies': 17, 'genes+maf': 17} MEND_ANY obs=123 exp=114.9 fold=1.07 p=0.1585
-2026-10-30 21:01:53,800 05_enrichment INFO: [r2_0.5] loci=351 matching={'genes+maf+buddies+dist': 316, 'genes+maf': 22, 'genes+maf+buddies': 13} MEND_ANY obs=129 exp=120.0 fold=1.08 p=0.131
-2026-10-30 21:01:54,732 05_enrichment INFO: [r2_0.8] loci=351 matching={'genes+maf+buddies+dist': 329, 'genes+maf+buddies': 12, 'genes+maf': 10} MEND_ANY obs=109 exp=102.1 fold=1.07 p=0.1971
-2026-10-30 21:01:55,650 05_enrichment INFO: [exclude_MHC_17q21] loci=348 matching={'genes+maf+buddies+dist': 314, 'genes+maf': 18, 'genes+maf+buddies': 16} MEND_ANY obs=121 exp=111.9 fold=1.08 p=0.1286
-2026-10-30 21:01:56,655 05_enrichment INFO: [nearest_gene] loci=351 matching={'genes+maf+buddies+dist': 317, 'genes+maf+buddies': 17, 'genes+maf': 17} MEND_ANY obs=96 exp=105.7 fold=0.91 p=0.8874
-2026-10-30 21:01:56,660 05_enrichment INFO: done
-2026-10-30 21:01:56,669 05_enrichment INFO: relative contrasts written
+2026-10-30 21:22:09,706 05_enrichment INFO: [primary] loci=351 matching={'genes+maf+buddies+dist': 317, 'genes+maf+buddies': 17, 'genes+maf': 17} MEND_ANY obs=123 exp=114.9 fold=1.07 p=0.1585
+2026-10-30 21:22:11,693 05_enrichment INFO: [r2_0.5] loci=351 matching={'genes+maf+buddies+dist': 316, 'genes+maf': 22, 'genes+maf+buddies': 13} MEND_ANY obs=129 exp=120.0 fold=1.08 p=0.131
+2026-10-30 21:22:13,322 05_enrichment INFO: [r2_0.8] loci=351 matching={'genes+maf+buddies+dist': 329, 'genes+maf+buddies': 12, 'genes+maf': 10} MEND_ANY obs=109 exp=102.1 fold=1.07 p=0.1971
+2026-10-30 21:22:14,960 05_enrichment INFO: [exclude_MHC_17q21] loci=348 matching={'genes+maf+buddies+dist': 314, 'genes+maf': 18, 'genes+maf+buddies': 16} MEND_ANY obs=121 exp=111.9 fold=1.08 p=0.1286
+2026-10-30 21:22:16,704 05_enrichment INFO: [nearest_gene] loci=351 matching={'genes+maf+buddies+dist': 317, 'genes+maf+buddies': 17, 'genes+maf': 17} MEND_ANY obs=96 exp=105.7 fold=0.91 p=0.8874
+2026-10-30 21:22:16,709 05_enrichment INFO: done
+2026-10-30 21:22:16,717 05_enrichment INFO: relative contrasts written

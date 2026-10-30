@@ -123,9 +123,13 @@ write("Supplementary_Table_S3_enrichment.xlsx", "Supplementary Table S3 - Locus-
                                     "(r2 >= 0.6), r2 >= 0.5, r2 >= 0.8, MHC/17q21.31 excluded, and nearest gene. "
                                     "Null loci are matched on MAF, LD partners, gene count and distance to the nearest "
                                     "gene. fold_analytic = observed / expected (exact) loci; q = Benjamini-Hochberg "
-                                    "within set family."),
-       ("Relative contrasts", Rr, "Pre-specified contrasts: fraction of loci hitting set A among loci hitting set B, "
-                                  "observed vs matched null."),
+                                    "within set family. frac_of_mendelian_obs / _exp and p_relative: among loci "
+                                    "containing a Mendelian gene, the fraction that also contain a gene of the set, "
+                                    "observed vs matched null (same draws)."),
+       ("Relative contrasts", Rr, "Pre-specified contrasts: among loci containing a gene of the reference set "
+                                  "(denominator), the fraction that also contain a gene of the phenotype set "
+                                  "(numerator; obs_both = loci containing a gene of both), observed vs the same "
+                                  "fraction in the matched null loci (same 10,000 draws)."),
        ("MAGMA gene-set", M, "MAGMA v1.10 competitive gene-set analysis on UK Biobank chronotype (GCST007576): "
                              "marginal and conditioned on neurodevelopmental genes (cond_NDD) or Mendelian genes "
                              "(cond_MEND)."),

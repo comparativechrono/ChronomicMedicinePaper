@@ -149,6 +149,7 @@ def fig2():
         return "–" if p != p else fmt_p(p)
 
     COLS = ((1.04, "obs / exp\nloci"), (1.32, "p, matched\nnull loci"), (1.62, "MAGMA p\n(gene level)"))
+    POSTHOC = {sid for grp, sets in ROWS if grp == "Post hoc" for sid, _ in sets}
     items = []
     for grp, sets in ROWS:
         items.append(("hdr", grp, None))
@@ -167,9 +168,12 @@ def fig2():
         ax.text(-0.94, yi, lab, transform=tr, ha="left", va="center", fontsize=6.8, color=INK)
         r = P.loc[sid]
         f = r.fold_analytic if r.obs_loci > 0 else lo * 1.08
-        sig = r.q_analytic_within_family < 0.05
-        ax.plot([f], [yi], marker="o", ms=4.4, mfc=S1 if sig else SURF, mec=S1, mew=1.1, ls="none", zorder=3,
-                clip_on=False)
+        if sid in POSTHOC:   # q is not meaningful after selection: no significance fill
+            ax.plot([f], [yi], marker="D", ms=3.8, mfc=INK2, mec=INK2, ls="none", zorder=3, clip_on=False)
+        else:
+            sig = r.q_analytic_within_family < 0.05
+            ax.plot([f], [yi], marker="o", ms=4.4, mfc=S1 if sig else SURF, mec=S1, mew=1.1, ls="none", zorder=3,
+                    clip_on=False)
         if r.obs_loci == 0:
             ax.text(lo * 1.35, yi, "0 observed", fontsize=6, color=INK2, va="center")
         ev = r.exp_loci_analytic
@@ -187,7 +191,8 @@ def fig2():
     ax.grid(axis="x", color=GRID, lw=0.5); ax.set_axisbelow(True)
     h1 = ax.plot([], [], "o", mfc=S1, mec=S1, ms=4.4, label="FDR q < 0.05 within set family")[0]
     h3 = ax.plot([], [], "o", mfc=SURF, mec=S1, ms=4.4, label="FDR q ≥ 0.05")[0]
-    ax.legend(handles=[h1, h3], loc="upper left", bbox_to_anchor=(-1.0, -0.055), fontsize=6.5, ncol=1,
+    h4 = ax.plot([], [], "D", mfc=INK2, mec=INK2, ms=3.8, label="post hoc set (q not computed)")[0]
+    ax.legend(handles=[h1, h3, h4], loc="upper left", bbox_to_anchor=(-1.0, -0.055), fontsize=6.5, ncol=3,
               handletextpad=0.3, title="Null loci matched on MAF, LD, gene count and distance",
               title_fontsize=6.5, alignment="left")
 

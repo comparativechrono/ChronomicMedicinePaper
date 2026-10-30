@@ -75,6 +75,13 @@ ANALYSES = [
     ("exclude_MHC_17q21", "60", "ld", True),
     ("nearest_gene", "60", "nearest", False),
 ]
+# pre-specified relative (specificity) contrasts: (phenotype set, reference set)
+CONTRASTS = [("HPO_HP0002360", "MEND_ANY"), ("HPO_HP0002360", "NDD"), ("HPO_CIRCADIAN", "MEND_ANY"),
+             ("HPO_HP0001657", "MEND_ANY"), ("HPO_HP0001639", "MEND_ANY"), ("EXP_INTD_MONOAMINE", "MEND_ANY"),
+             ("INH_AD", "MEND_ANY"), ("HPO_HP0001263", "MEND_ANY"), ("HPO_HP0002360", "INH_AD")]
+# Relative tests need the number of loci containing a gene of BOTH sets (the phenotype set need not be nested
+# in the reference set), counted on the same null draws: every set with the Mendelian reference, then the contrasts.
+PAIRS = [(j, ref_col) for j in range(len(set_ids))] + [(set_ids.index(a), set_ids.index(b)) for a, b in CONTRASTS]
 
 fam = summary.set_index("set_id").family
 lab = summary.set_index("set_id").label
@@ -97,16 +104,24 @@ for name, tag, mapping, exclude in ANALYSES:
 
     ncol = f"n_genes_r{tag}"
     cands, level = E.match_candidates(obs_df, pool_df, ncol, q=cfg["null_model"]["maf_bins"])
-    obs_hits = E.set_hit_matrix(Mo, set_ind).sum(axis=0)
+    obs_mat = E.set_hit_matrix(Mo, set_ind)
+    obs_hits = obs_mat.sum(axis=0)
     pool_hits = E.set_hit_matrix(Mp, set_ind)
-    null = E.permute(cands, pool_hits, N_PERM, rng)
-    res = E.summarise(obs_hits, null, set_ids, ref_col=ref_col)
+    pool_both = np.stack([pool_hits[:, a] & pool_hits[:, b] for a, b in PAIRS], axis=1)
+    obs_both = np.array([int((obs_mat[:, a] & obs_mat[:, b]).sum()) for a, b in PAIRS])
+    ns = len(set_ids)
+    null_all = E.permute(cands, np.hstack([pool_hits, pool_both]), N_PERM, rng)  # one set of draws for all columns
+    null, null_both = null_all[:, :ns], null_all[:, ns:]
+    res = E.summarise(obs_hits, null, set_ids, ref_col=ref_col, obs_both_ref=obs_both[:ns],
+                      null_both_ref=null_both[:, :ns])
     probs = E.hit_probabilities(cands, pool_hits)
     res["exp_loci_analytic"] = probs.sum(axis=0)
     res["p_enrich_analytic"] = [E.poisson_binomial_sf(probs[:, j], int(obs_hits[j])) for j in range(len(set_ids))]
     res["fold_analytic"] = np.asarray(obs_hits, float) / res["exp_loci_analytic"].values
     np.save(INTERIM / "null" / f"null_hits_{name}.npy", null)
     np.save(INTERIM / "null" / f"obs_hits_{name}.npy", obs_hits)
+    np.save(INTERIM / "null" / f"null_both_contrasts_{name}.npy", null_both[:, ns:])
+    np.save(INTERIM / "null" / f"obs_both_contrasts_{name}.npy", obs_both[ns:])
     res.insert(0, "analysis", name)
     res.insert(2, "family", res.set_id.map(fam))
     res.insert(3, "label", res.set_id.map(lab))
@@ -145,21 +160,19 @@ pd.concat(all_res).to_csv(TABLES / "enrichment_all.tsv", sep="\t", index=False)
 log.info("done")
 
 # ------------------------------------------------------------------ pre-specified relative contrasts
-CONTRASTS = [("HPO_HP0002360", "MEND_ANY"), ("HPO_HP0002360", "NDD"), ("HPO_CIRCADIAN", "MEND_ANY"),
-             ("HPO_HP0001657", "MEND_ANY"), ("HPO_HP0001639", "MEND_ANY"), ("EXP_INTD_MONOAMINE", "MEND_ANY"),
-             ("INH_AD", "MEND_ANY"), ("HPO_HP0001263", "MEND_ANY"), ("HPO_HP0002360", "INH_AD")]
+# Among loci containing a gene of the reference set (denominator), the fraction that also contain a gene of
+# the phenotype set (numerator), observed vs matched null loci.
 rel = []
 for name, *_ in ANALYSES:
     null = np.load(INTERIM / "null" / f"null_hits_{name}.npy")
     obs = np.load(INTERIM / "null" / f"obs_hits_{name}.npy")
-    for num, den in CONTRASTS:
+    null_both = np.load(INTERIM / "null" / f"null_both_contrasts_{name}.npy")
+    obs_both = np.load(INTERIM / "null" / f"obs_both_contrasts_{name}.npy")
+    for k, (num, den) in enumerate(CONTRASTS):
         i, j = set_ids.index(num), set_ids.index(den)
-        fo = obs[i] / obs[j] if obs[j] else np.nan
-        with np.errstate(divide="ignore", invalid="ignore"):
-            fn = null[:, i] / null[:, j]
-        fn = fn[np.isfinite(fn)]
+        fo, fn, p = E.relative_fraction_test(obs_both[k], obs[j], null_both[:, k], null[:, j])
         rel.append({"analysis": name, "numerator": num, "denominator": den, "obs_numerator": int(obs[i]),
-                    "obs_denominator": int(obs[j]), "obs_fraction": fo, "null_mean_fraction": fn.mean(),
-                    "p_relative": (1 + (fn >= fo).sum()) / (1 + fn.size)})
+                    "obs_denominator": int(obs[j]), "obs_both": int(obs_both[k]), "obs_fraction": fo,
+                    "null_mean_fraction": fn, "p_relative": p})
 pd.DataFrame(rel).to_csv(TABLES / "enrichment_relative.tsv", sep="\t", index=False)
 log.info("relative contrasts written")

@@ -75,8 +75,32 @@ def permute(cands: list[np.ndarray], pool_hits: np.ndarray, n_perm: int, rng: np
     return out
 
 
-def summarise(obs_hits: np.ndarray, null: np.ndarray, set_ids: list[str], ref_col: int | None = None) -> pd.DataFrame:
-    """Enrichment, empirical p-values and (optionally) enrichment relative to a reference set."""
+def relative_fraction_test(obs_both: int, obs_ref: int, null_both: np.ndarray,
+                           null_ref: np.ndarray) -> tuple[float, float, float]:
+    """Relative (specificity) test. Among loci containing a gene of a reference set, the fraction that also
+    contain a gene of the test set, observed vs the same fraction in matched null loci.
+
+    obs_both / null_both count loci containing a gene of both sets; null arrays must come from the same
+    null draws as null_ref. Returns (observed fraction, mean null fraction, upper-tail permutation p).
+    """
+    fo = obs_both / obs_ref if obs_ref else np.nan
+    with np.errstate(divide="ignore", invalid="ignore"):
+        fn = null_both / null_ref
+    fn = fn[np.isfinite(fn)]
+    if fo != fo or not fn.size:
+        return fo, np.nan, np.nan
+    return fo, float(fn.mean()), (1 + (fn >= fo).sum()) / (1 + fn.size)
+
+
+def summarise(obs_hits: np.ndarray, null: np.ndarray, set_ids: list[str], ref_col: int | None = None,
+              obs_both_ref: np.ndarray | None = None, null_both_ref: np.ndarray | None = None) -> pd.DataFrame:
+    """Enrichment, empirical p-values and (optionally) enrichment relative to a reference set.
+
+    For the relative columns, obs_both_ref[j] / null_both_ref[:, j] count loci containing a gene of set j and
+    a gene of the reference set (see relative_fraction_test).
+    """
+    if ref_col is not None and (obs_both_ref is None or null_both_ref is None):
+        raise ValueError("relative enrichment needs joint hit counts with the reference set")
     n_perm = null.shape[0]
     mean = null.mean(axis=0)
     rows = []
@@ -91,14 +115,10 @@ def summarise(obs_hits: np.ndarray, null: np.ndarray, set_ids: list[str], ref_co
              "fold": o / mean[j] if mean[j] > 0 else np.nan,
              "p_enrich": p_up, "p_two_sided": min(1.0, 2 * min(p_up, p_lo))}
         if ref_col is not None and j != ref_col:
-            ref_o = obs_hits[ref_col]
-            frac_o = o / ref_o if ref_o else np.nan
-            with np.errstate(divide="ignore", invalid="ignore"):
-                frac_n = null[:, j] / null[:, ref_col]
-            frac_n = frac_n[np.isfinite(frac_n)]
-            r["frac_of_mendelian_obs"] = frac_o
-            r["frac_of_mendelian_exp"] = frac_n.mean() if frac_n.size else np.nan
-            r["p_relative"] = (1 + (frac_n >= frac_o).sum()) / (1 + frac_n.size) if frac_n.size else np.nan
+            fo, fn, p = relative_fraction_test(obs_both_ref[j], obs_hits[ref_col], null_both_ref[:, j], null[:, ref_col])
+            r["frac_of_mendelian_obs"] = fo
+            r["frac_of_mendelian_exp"] = fn
+            r["p_relative"] = p
         rows.append(r)
     return pd.DataFrame(rows)
 

@@ -11,12 +11,12 @@ to understand, diagnose and manage disease.
 
 * **No general enrichment.** Mendelian disease genes are not enriched at the 351 chronotype loci of Jones et al.
   (2019) once null loci are matched for allele frequency, LD, gene count and distance. Genes for dominant and
-  neurodevelopmental disorders, and for five HPO organ systems, are modestly over-represented within loci, but
-  none of these sets is enriched in gene-level (MAGMA) tests.
+  neurodevelopmental disorders, and for five HPO organ systems, are modestly over-represented within loci, with
+  little gene-level (MAGMA) support.
 * **Phenotype-specific convergence is modest.**
-  * Genes for Mendelian disorders with sleep disturbance are over-represented, but the signal is carried mainly
-    by genes that also cause neurodevelopmental disorders and is not separable from an excess of autosomal
-    dominant disease genes.
+  * Genes for Mendelian disorders with sleep disturbance are over-represented, including among loci that contain
+    other dominant or neurodevelopmental disease genes. Most of these genes also cause neurodevelopmental
+    disorders, however, and their gene-level support is nominal.
   * In a post hoc analysis, 4 of 12 monoamine neurotransmitter disorder genes (*GCH1*, *DDC*, *DNAJC12*,
     *SLC18A2*) lie in chronotype loci; gene-level support is strongest for *DDC*.
 * **Rare variants converge on clock genes.** In UK Biobank exomes, rare variants in *PER2* and *PER3* are

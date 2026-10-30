@@ -182,8 +182,15 @@ K["set_hit_genes"] = {s: ";".join(sorted({g for x in hits[hits.set_id == s].gene
                                 "HPO_HP0001657", "HPO_SLEEP_noNDD", "GO_CIRCADIAN"]}
 K["magma_floor"] = 1e-15
 _sl = C[C.sleep_disturbance].drop_duplicates("gene_id")
-K["sleep_genes_in_loci"] = {"n": int(len(_sl)), "n_AD": int(_sl.inheritance.fillna("").str.contains("AD").sum()),
-                            "n_loci": int(_sl.locus_no.nunique())}
+_ad = _sl.inheritance.fillna("").str.contains("AD")
+_nd = _sl.neurodevelopmental.astype(bool)
+K["sleep_genes_in_loci"] = {"n": int(len(_sl)), "n_AD": int(_ad.sum()), "n_NDD": int(_nd.sum()),
+                            "n_AD_NDD": int((_ad & _nd).sum()), "n_loci": int(_sl.locus_no.nunique())}
+# largest relative-test p-value over the primary and sensitivity analyses, per contrast
+K["relative_max_p"] = {f"{n}/{d}": float(g.p_relative.max()) for (n, d), g in R.groupby(["numerator", "denominator"])}
+# the text names the locus-only sets that reach p < 0.05 in MAGMA conditioned on Mendelian genes; fail if this changes
+_cm = M[M.model == "cond_MEND"].set_index("set_id").P.reindex(_lo + ["NDD"])
+assert set(_cm[_cm < 0.05].index) == {"HPO_HP0001249", "NDD"}, _cm
 _px = leads_tab[leads_tab.ld_index_type.astype(str).str.startswith("best_ukb")].copy()
 _px["p"] = _px.ld_index_type.str.extract(r"P=([0-9.eE+-]+)").astype(float)
 _px["dist_kb"] = (_px.index_bp - _px.pos).abs() / 1000
