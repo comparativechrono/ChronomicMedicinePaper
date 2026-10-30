@@ -13,16 +13,17 @@ to understand, diagnose and manage disease.
   (2019) once null loci are matched for allele frequency, LD, gene count and distance. Genes for dominant and
   neurodevelopmental disorders, and for five HPO organ systems, are modestly over-represented within loci, with
   little gene-level (MAGMA) support.
+* **Clinical disease panels.** Of 248 Genomics England PanelApp panels, six are enriched at chronotype loci
+  (FDR < 0.05): the neurotransmitter disorders panel, driven by four monoamine genes (*GCH1*, *DDC*, *DNAJC12*,
+  *SLC18A2*), and five broad developmental panels with little gene-level support. No cardiac, immune or
+  sleep-related panel is enriched.
 * **Phenotype-specific convergence is modest.**
   * Genes for Mendelian disorders with sleep disturbance are over-represented, but specificity for sleep is
     uncertain. Most of these genes also cause neurodevelopmental disorders, genes for other syndromic features
     (such as craniosynostosis and clefting) show similar excesses, and gene-level support is nominal.
   * In a post hoc analysis, 4 of 12 monoamine neurotransmitter disorder genes (*GCH1*, *DDC*, *DNAJC12*,
-    *SLC18A2*) lie in chronotype loci; gene-level support is strongest for *DDC*.
-* **Clinical disease panels (post hoc).** Of 248 Genomics England PanelApp panels, six are enriched at chronotype loci
-  (FDR < 0.05). One is the independently curated neurotransmitter disorders panel, whose enrichment rests on the
-  same four monoamine genes. The other five are broad developmental panels, with little gene-level support. No
-  cardiac, immune or sleep-related panel is enriched.
+    *SLC18A2*) lie in chronotype loci; gene-level support is strongest for *DDC*. The PanelApp result rests on
+    the same four genes, so it supports rather than replicates this finding.
 * **Rare variants converge on clock genes.** In UK Biobank exomes, rare variants in *PER2* and *PER3* are
   associated with morningness (exome-wide significant), and deleterious *FBXL3* variants nominally with
   eveningness. These three genes account for the excess burden signal among Mendelian genes at chronotype loci.
@@ -65,8 +66,8 @@ manuscript/                 manuscript template, generated tables, bibliography,
 | Figure 5. Convergence of rare-variant burden with chronotype loci | `results/figures/Fig5_rare_common_convergence.pdf` / `.png` |
 | Supplementary Figure S1. Chronotype and QT-interval association at *KCNH2* | `results/figures/FigS1_kcnh2_coloc.pdf` / `.png` |
 | Table 1. Locus- and gene-level enrichment of selected gene sets | in the manuscript; source `manuscript/tables/table1.md` |
-| Table 2. Selected chronomic candidate genes | in the manuscript; source `manuscript/tables/table2.md` |
-| Table 3. PanelApp disease panels enriched at chronotype loci | in the manuscript; source `manuscript/tables/table3.md` |
+| Table 2. PanelApp disease panels enriched at chronotype loci | in the manuscript; source `manuscript/tables/table2.md` |
+| Table 3. Selected chronomic candidate genes | in the manuscript; source `manuscript/tables/table3.md` |
 | Supplementary Table S1. Chronotype loci, LD intervals, genes and Open Targets annotations | `results/supplementary/Supplementary_Table_S1_chronotype_loci.xlsx` |
 | Supplementary Table S2. Gene universe and gene sets, including PanelApp panels | `results/supplementary/Supplementary_Table_S2_gene_sets.xlsx` |
 | Supplementary Table S3. Locus- and gene-level enrichment, relative tests and PanelApp screen | `results/supplementary/Supplementary_Table_S3_enrichment.xlsx` |
@@ -107,7 +108,7 @@ cores. The longest steps are the downloads, MAGMA, and the Open Targets API quer
 | Open Targets Platform | 26.09 (GraphQL API) | credible sets, L2G, colocalisation |
 | UK Biobank exome burden (Backman et al. 2021) | GCST90081559–62 (European ancestry, n = 388,330) | rare-variant convergence |
 | QT interval GWAS (Hoffmann et al. 2022) | GCST90165291 | colocalisation at *KCNH2* |
-| Genomics England PanelApp | REST API v1, green genes (retrieved 2026-10-30) | clinical disease-panel screen (post hoc) |
+| Genomics England PanelApp | REST API v1, green genes (retrieved 2026-10-30) | clinical disease-panel screen |
 | Mouse circadian atlas (Zhang et al. 2014) | GEO GSE54650 | rhythmic expression |
 | GTEx day–night expression (Wucher et al. 2023) | figshare 10.6084/m9.figshare.21906252 (CC BY 4.0) | day–night expression |
 
