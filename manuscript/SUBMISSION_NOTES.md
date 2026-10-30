@@ -28,8 +28,8 @@
 7. **Communications Biology**: ~5,000 words, ≤ 10 display items; the main text would need shortening.
 8. **Genome Medicine** (stretch).
 
-The structured abstract is about 300 words. The main text (Introduction to Discussion) is about 6,500 words, with
-5 figures, 2 tables, 1 supplementary figure and 6 supplementary tables. Journals with a ~5,000-word limit would need
+The structured abstract is about 300 words. The main text (Introduction to Discussion) is about 7,000 words, with
+5 figures, 3 tables, 1 supplementary figure and 6 supplementary tables. Journals with a ~5,000-word limit would need
 the Methods moved partly to the Supplement.
 
 ## Rebuilding the Word file

@@ -58,6 +58,21 @@ loo = loo.rename(columns={"VARIABLE": "set_id"}) if "VARIABLE" in loo.columns el
 loo.to_csv(TABLES / "magma_monoamine_leave_one_out.tsv", sep="\t", index=False)
 log.info("monoamine leave-one-out:\n%s", loo[["set_id", "NGENES", "BETA", "P"]].to_string())
 
+# PanelApp clinical disease panels (written by 05b_disease_panels.py): marginal model, FDR across panels
+pfile = INTERIM / "genesets" / "panelapp.magma.txt"
+if pfile.exists():
+    out = MAG / "chronotype.gs_panelapp"
+    subprocess.run([str(c) for c in [MAGMA, "--gene-results", MAG / "chronotype.genes.raw", "--set-annot", pfile,
+                                     "--out", out]], check=True, stdout=subprocess.DEVNULL)
+    pm = pd.read_csv(Path(str(out) + ".gsa.out"), sep=r"\s+", comment="#")
+    pm = pm.rename(columns={"VARIABLE": "set_id"}) if "VARIABLE" in pm.columns else pm.rename(columns={"FULL_NAME": "set_id"})
+    pm.insert(0, "panel_id", pm.set_id.str.replace("PANEL_", "", regex=False).astype(int))
+    pm["q_across_panels"] = bh_fdr(pm.P.values)
+    pm.to_csv(TABLES / "magma_panelapp.tsv", sep="\t", index=False)
+    log.info("PanelApp panels in MAGMA: %d; p < 0.05: %d", len(pm), int((pm.P < 0.05).sum()))
+else:
+    log.warning("no PanelApp gene sets (run scripts/05b_disease_panels.py first); panel MAGMA skipped")
+
 R = pd.concat(frames, ignore_index=True)
 R = R.rename(columns={"VARIABLE": "set_id"}) if "VARIABLE" in R.columns else R.rename(columns={"FULL_NAME": "set_id"})
 fam = pd.read_csv(INTERIM / "genesets" / "geneset_summary.tsv", sep="\t").set_index("set_id")

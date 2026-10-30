@@ -1,5 +1,5 @@
-2026-10-30 21:02:00,625 05b_disease_panels INFO: panels tested: 248 (of 433 public panels)
-2026-10-30 21:02:02,771 05b_disease_panels INFO: 
+2026-10-30 21:59:57,455 05b_disease_panels INFO: panels tested: 248 (of 433 public panels)
+2026-10-30 21:59:59,727 05b_disease_panels INFO: 
                                                              panel_name  n_genes_universe  obs_loci  exp_primary  p_primary  q_primary  p_r2_0.8  p_exclude_MHC_17q21
 79   Rare syndromic craniosynostosis or isolated multisuture synostosis               195        15     4.056737   0.000017   0.004197  0.000069             0.000052
 104                                          Neurotransmitter disorders                18         4     0.204825   0.000051   0.006356  0.000016             0.000043

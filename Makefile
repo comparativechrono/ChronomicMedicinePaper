@@ -15,10 +15,10 @@ loci:        ; $(PY) scripts/02_define_loci.py
 null:        ; $(PY) scripts/03_null_pool.py
 rhythm:      ; $(PY) scripts/04_rhythmicity.py          # appends rhythmicity gene sets; run after genesets
 enrichment:  ; $(PY) scripts/05_enrichment.py
-panels:                                                  # disease-group screen (PanelApp); exploratory
+panels:                                                  # clinical disease-panel screen (PanelApp); before magma
 	$(PY) scripts/01b_fetch_panelapp.py
 	$(PY) scripts/05b_disease_panels.py
-magma:
+magma:                                                   # also tests the PanelApp panels written by 'panels'
 	$(PY) scripts/06_magma_genes.py chronotype
 	$(PY) scripts/07_magma_genesets.py
 opentargets:

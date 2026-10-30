@@ -199,6 +199,32 @@ K["hpo_temporal_unused_total"] = int(sum(K["hpo_temporal_modifiers"][k]["annotat
                                          for k in ("Diurnal", "Fluctuating", "Worse in evening")))
 _loo = pd.read_csv(TABLES / "magma_monoamine_leave_one_out.tsv", sep="\t")
 K["magma_monoamine_loo"] = {r.set_id.replace("MONO_minus_", "minus_"): float(r.P) for r in _loo.itertuples()}
+# ---- Genomics England PanelApp clinical disease-panel screen (05b_disease_panels.py; MAGMA in 07)
+_pr = pd.read_csv(TABLES / "enrichment_panelapp.tsv", sep="\t")
+_pmg = pd.read_csv(TABLES / "magma_panelapp.tsv", sep="\t").set_index("panel_id")
+_pmeta = json.load(open(ROOT / "data" / "raw" / "panelapp" / "meta.json"))
+_pfdr = _pr[_pr.q_primary < 0.05]
+_sens = ["p_r2_0.5", "p_r2_0.8", "p_exclude_MHC_17q21"]
+_ntd = 219                                         # "Neurotransmitter disorders"
+_pg = pd.read_csv(INTERIM / "genesets" / "panelapp_members.tsv", sep="\t")
+_mono = set(pd.read_csv(INTERIM / "genesets" / "genesets.tsv", sep="\t").query("set_id == 'EXP_INTD_MONOAMINE'").gene_id)
+K["panelapp"] = {
+    "n_public": int(_pmeta["n_panels"]), "n_tested": int(len(_pr)), "retrieved": _pmeta["retrieved_utc"][:10],
+    "n_fdr": int(len(_pfdr)), "fdr_sens_max_p": float(_pfdr[_sens].max().max()),
+    "n_magma_q05": int((_pmg.q_across_panels < 0.05).sum()),
+    "ntd_overlap_monoamine": int(len(_mono & set(_pg[_pg.panel_id == _ntd].gene_id))), "monoamine_n": len(_mono),
+    "panels": {str(r.panel_id): {"name": r.panel_name, "n_genes": int(r.n_genes_universe), "obs": int(r.obs_loci),
+                                 "exp": float(r.exp_primary), "fold": float(r.fold_primary), "p": float(r.p_primary),
+                                 "q": float(r.q_primary), "magma_p": float(_pmg.P.get(r.panel_id, np.nan)),
+                                 "genes": r.genes_in_loci if isinstance(r.genes_in_loci, str) else ""}
+               for r in _pr.itertuples()}}
+# the text describes these six panels by name; fail if the set of FDR-significant panels changes
+assert set(_pfdr.panel_id) == {168, 219, 484, 81, 144, 402}, sorted(_pfdr.panel_name)
+_broad = _pr[_pr.panel_id.isin([168, 484, 81, 144, 402])]          # the five broad developmental panels
+_bids = {genes_tab.gene_id[s] for s in set(";".join(_broad.genes_in_loci).split(";"))}
+_ndd_ids = set(pd.read_csv(INTERIM / "genesets" / "genesets.tsv", sep="\t").query("set_id == 'NDD'").gene_id)
+K["panelapp"]["broad"] = {"fold_min": float(_broad.fold_primary.min()), "fold_max": float(_broad.fold_primary.max()),
+                          "n_genes_in_loci": len(_bids), "n_ndd": len(_bids & _ndd_ids)}
 K["environment"] = env_snapshot()
 K["n_manifest_files"] = int(len(pd.read_csv(ROOT / "data" / "manifest.tsv", sep="\t")))
 save_json(K, ROOT / "results" / "key_numbers.json")

@@ -19,6 +19,10 @@ to understand, diagnose and manage disease.
     disorders, however, and their gene-level support is nominal.
   * In a post hoc analysis, 4 of 12 monoamine neurotransmitter disorder genes (*GCH1*, *DDC*, *DNAJC12*,
     *SLC18A2*) lie in chronotype loci; gene-level support is strongest for *DDC*.
+* **Clinical disease panels.** Of 248 Genomics England PanelApp panels, six are enriched at chronotype loci
+  (FDR < 0.05). One is the independently curated neurotransmitter disorders panel, whose enrichment rests on the
+  same four monoamine genes. The other five are broad developmental panels, with little gene-level support. No
+  cardiac, immune or sleep-related panel is enriched.
 * **Rare variants converge on clock genes.** In UK Biobank exomes, rare variants in *PER2* and *PER3* are
   associated with morningness (exome-wide significant), and deleterious *FBXL3* variants nominally with
   eveningness. These three genes account for the excess burden signal among Mendelian genes at chronotype loci.
@@ -79,7 +83,7 @@ cores. The longest steps are the downloads, MAGMA, and the Open Targets API quer
 | Open Targets Platform | 26.09 (GraphQL API) | credible sets, L2G, colocalisation |
 | UK Biobank exome burden (Backman et al. 2021) | GCST90081559–62 (European ancestry, n = 388,330) | rare-variant convergence |
 | QT interval GWAS (Hoffmann et al. 2022) | GCST90165291 | colocalisation at *KCNH2* |
-| Genomics England PanelApp | REST API v1, green genes (retrieved 2026-10-30) | disease-group screen (exploratory) |
+| Genomics England PanelApp | REST API v1, green genes (retrieved 2026-10-30) | clinical disease-panel screen |
 | Mouse circadian atlas (Zhang et al. 2014) | GEO GSE54650 | rhythmic expression |
 | GTEx day–night expression (Wucher et al. 2023) | figshare 10.6084/m9.figshare.21906252 (CC BY 4.0) | day–night expression |
 

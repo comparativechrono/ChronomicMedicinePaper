@@ -48,6 +48,13 @@ P = P[P.n_genes_universe.between(10, 3000)].sort_values("panel_id")
 P = P[~P.panel_id.map(sets).duplicated()]          # identical gene sets tested once
 P.to_csv(TABLES / "panelapp_panels_tested.tsv", sep="\t", index=False)
 pids = P.panel_id.tolist()
+# members of the tested panels, and a MAGMA set file for the gene-level test in 07_magma_genesets.py
+# (short set names: MAGMA truncates long ones)
+pd.DataFrame([(pid, g) for pid in pids for g in sorted(sets[pid])], columns=["panel_id", "gene_id"]).to_csv(
+    INTERIM / "genesets" / "panelapp_members.tsv", sep="\t", index=False)
+with open(INTERIM / "genesets" / "panelapp.magma.txt", "w") as fh:
+    for pid in pids:
+        fh.write(f"PANEL_{pid} " + " ".join(sorted(sets[pid])) + "\n")
 set_ind = np.zeros((len(genes), len(pids)), dtype=bool)
 for j, pid in enumerate(pids):
     set_ind[[gcol[g] for g in sets[pid]], j] = True

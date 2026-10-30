@@ -80,7 +80,8 @@ def fig1():
     ax.text(0.5, 38.3, "Mendelian disease knowledge", fontsize=7.6, weight="bold", color=S2)
     box(0.5, 20, 31, 16.5, "Disease genes & phenotypes",
         ["OMIM (via HPO), Orphanet, ClinGen", "HPO annotations (2026-09 release)",
-         "pre-specified: sleep/circadian, cardiac,", "immune, neurodevelopmental, growth"], fc="#fdf3ee", ec=S2)
+         "PanelApp clinical gene panels (screen)", "pre-specified: sleep/circadian, cardiac,",
+         "immune, neurodevelopmental, growth"], fc="#fdf3ee", ec=S2)
     ax.text(0.5, 17.3, "Rare variation & chronobiology", fontsize=7.6, weight="bold", color=S3)
     box(0.5, 0.5, 31, 15, "Exomes and rhythms",
         ["UKB exome burden (n = 388,330)", "mouse 12-tissue circadian atlas", "GTEx day–night expression"],

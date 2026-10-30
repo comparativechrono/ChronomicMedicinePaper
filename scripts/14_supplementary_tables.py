@@ -104,19 +104,38 @@ uni = pd.read_csv(INTERIM / "genesets" / "gene_universe.tsv", sep="\t").set_inde
 gs["symbol"] = gs.gene_id.map(uni)
 links = pd.read_csv(INTERIM / "genesets" / "gene_disease_links.tsv", sep="\t")
 prov = json.load(open(INTERIM / "genesets" / "provenance.json"))
+pa_meta = json.load(open(ROOT / "data" / "raw" / "panelapp" / "meta.json"))
+pa_panels = pd.read_csv(TABLES / "panelapp_panels_tested.tsv", sep="\t")
+pa_mem = pd.read_csv(INTERIM / "genesets" / "panelapp_members.tsv", sep="\t")
+pa_mem["symbol"] = pa_mem.gene_id.map(uni)
+pa_mem.insert(1, "panel_name", pa_mem.panel_id.map(pa_panels.set_index("panel_id").panel_name))
 write("Supplementary_Table_S2_gene_sets.xlsx", "Supplementary Table S2 - Gene universe and gene sets",
       [("Gene set summary", summ, "Definition, family and size of every gene set tested."),
        ("Gene set members", gs[["set_id", "family", "label", "gene_id", "symbol"]], "Members of each gene set."),
        ("Gene-disease links", links, "Gene-disease pairs used: OMIM (Mendelian, via HPO genes_to_disease / "
                                      "mim2gene_medgen), Orphanet (disease-causing, assessed) and ClinGen "
-                                     "(moderate, strong or definitive).")],
-      common_note + [f"HPO release: {prov['hpo_version']}; protein-coding universe: {prov['n_universe']} genes."])
+                                     "(moderate, strong or definitive)."),
+       ("PanelApp panels", pa_panels, "Genomics England PanelApp disease panels tested: public panels excluding "
+                                      "super-panels and additional-findings panels, with 10-3,000 green genes in the "
+                                      "gene universe; panels with identical gene lists tested once. version = panel "
+                                      "version at retrieval; n_genes = green genes on the panel; n_genes_universe = "
+                                      "those mapped to the gene universe."),
+       ("PanelApp panel genes", pa_mem, "Green (diagnostic-grade) genes of each tested panel, mapped to the gene "
+                                        "universe by Ensembl GRCh37 identifier, then HGNC identifier, then symbol.")],
+      common_note + [f"HPO release: {prov['hpo_version']}; protein-coding universe: {prov['n_universe']} genes.",
+                     f"PanelApp: {pa_meta['api']} (retrieved {pa_meta['retrieved_utc']}); {pa_meta['n_panels']} "
+                     f"public panels."])
 
 # ---------------------------------------------------------------- S3 enrichment
 E = pd.read_csv(TABLES / "enrichment_all.tsv", sep="\t")
 Rr = pd.read_csv(TABLES / "enrichment_relative.tsv", sep="\t")
 M = pd.read_csv(TABLES / "magma_genesets.tsv", sep="\t")
 hits = pd.read_csv(TABLES / "locus_set_hits.tsv", sep="\t")
+pa_res = pd.read_csv(TABLES / "enrichment_panelapp.tsv", sep="\t")
+_pm = pd.read_csv(TABLES / "magma_panelapp.tsv", sep="\t").set_index("panel_id")
+pa_res.insert(pa_res.columns.get_loc("genes_in_loci"), "magma_ngenes", pa_res.panel_id.map(_pm.NGENES))
+pa_res.insert(pa_res.columns.get_loc("genes_in_loci"), "magma_p", pa_res.panel_id.map(_pm.P))
+pa_res.insert(pa_res.columns.get_loc("genes_in_loci"), "magma_q", pa_res.panel_id.map(_pm.q_across_panels))
 write("Supplementary_Table_S3_enrichment.xlsx", "Supplementary Table S3 - Locus-level and gene-level enrichment results",
       [("Locus-level enrichment", E, "Observed loci containing >= 1 gene of each set vs matched null loci "
                                     "(10,000 permutations; exact Poisson-binomial p-values) for each analysis: primary "
@@ -133,6 +152,11 @@ write("Supplementary_Table_S3_enrichment.xlsx", "Supplementary Table S3 - Locus-
        ("MAGMA gene-set", M, "MAGMA v1.10 competitive gene-set analysis on UK Biobank chronotype (GCST007576): "
                              "marginal and conditioned on neurodevelopmental genes (cond_NDD) or Mendelian genes "
                              "(cond_MEND)."),
+       ("PanelApp screen", pa_res, "Genomics England PanelApp disease panels (green genes) at chronotype loci, "
+                                   "tested like the gene sets above: observed and expected loci, fold, exact p and "
+                                   "Benjamini-Hochberg q across panels for the primary analysis (r2 >= 0.6) and the "
+                                   "sensitivity analyses; genes_in_loci = panel genes in chronotype loci (primary). "
+                                   "magma_*: MAGMA marginal competitive gene-set test, q across panels."),
        ("MAGMA monoamine LOO", pd.read_csv(TABLES / "magma_monoamine_leave_one_out.tsv", sep="\t"),
         "Post hoc monoamine set: MAGMA marginal gene-set analysis leaving out each of the four genes in "
         "chronotype loci in turn."),

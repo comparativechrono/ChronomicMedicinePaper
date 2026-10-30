@@ -99,5 +99,20 @@ for g in DIS:
     inh = str(r.inheritance).replace(";", "/") if isinstance(r.inheritance, str) else "–"
     lines.append(f"| *{g}* | {r.lead_rsid} | {DIS[g]} ({inh}) | {l2g} | {fp(r.magma_p, True)} | {bur} | {qtl} | {rh} | {int(r.evidence_count)} |")
 (OUT / "table2.md").write_text("\n".join(lines) + "\n")
+# ---------------------------------------------------------------- Table 3 (PanelApp screen, FDR < 0.05)
+pr = pd.read_csv(TABLES / "enrichment_panelapp.tsv", sep="\t")
+pmg = pd.read_csv(TABLES / "magma_panelapp.tsv", sep="\t").set_index("panel_id").P
+NAMES = {"DDG2P": "DDG2P (developmental disorders)"}
+lines = ["| PanelApp panel | Genes | Loci obs/exp (fold) | p | q | MAGMA p | Panel genes in loci |",
+         "|:" + "-" * 26 + "|" + "-" * 8 + ":|:" + "-" * 14 + "|:" + "-" * 10 + "|:" + "-" * 8 + "|:" + "-" * 10 + "|:"
+         + "-" * 27 + "|"]
+for r in pr[pr.q_primary < 0.05].sort_values("p_primary").itertuples():
+    g = r.genes_in_loci.split(";")
+    gtxt = ", ".join(f"*{x}*" for x in g) if len(g) <= 10 else f"{len(g)} genes (Supplementary Table S3)"
+    lines.append(f"| {NAMES.get(r.panel_name, r.panel_name)} | {int(r.n_genes_universe):,} | {int(r.obs_loci)}/"
+                 f"{fexp(r.exp_primary)} ({ffold(r.fold_primary)}) | {fp(r.p_primary)} | {fp(r.q_primary)} | "
+                 f"{fp(pmg.get(r.panel_id, np.nan), True)} | {gtxt} |")
+(OUT / "table3.md").write_text("\n".join(lines) + "\n")
 print((OUT / "table1.md").read_text())
 print((OUT / "table2.md").read_text())
+print((OUT / "table3.md").read_text())
