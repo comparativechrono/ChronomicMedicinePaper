@@ -73,7 +73,7 @@ for grp, sets in ROWS:
             f"| {fp(p.p_enrich_analytic)} | {q} | {fp(Mm.get(sid, np.nan), True)} |")
 (OUT / "table1.md").write_text("\n".join(lines) + "\n")
 
-# ---------------------------------------------------------------- Table 2
+# ---------------------------------------------------------------- Table 3 (candidate genes)
 cat = pd.read_csv(TABLES / "chronomic_gene_catalogue.tsv", sep="\t").set_index("symbol")
 DIS = {"PER3": "Familial advanced sleep phase syndrome 3", "PER2": "Familial advanced sleep phase syndrome 1",
        "FBXL3": "Intellectual developmental disorder with short stature, facial anomalies and speech defects",
@@ -98,8 +98,8 @@ for g in DIS:
     rh = f"{int(r.mouse_rhythmic_n)}/12" if r.mouse_rhythmic_n == r.mouse_rhythmic_n else "–"
     inh = str(r.inheritance).replace(";", "/") if isinstance(r.inheritance, str) else "–"
     lines.append(f"| *{g}* | {r.lead_rsid} | {DIS[g]} ({inh}) | {l2g} | {fp(r.magma_p, True)} | {bur} | {qtl} | {rh} | {int(r.evidence_count)} |")
-(OUT / "table2.md").write_text("\n".join(lines) + "\n")
-# ---------------------------------------------------------------- Table 3 (PanelApp screen, FDR < 0.05)
+(OUT / "table3.md").write_text("\n".join(lines) + "\n")
+# ---------------------------------------------------------------- Table 2 (PanelApp screen, FDR < 0.05)
 pr = pd.read_csv(TABLES / "enrichment_panelapp.tsv", sep="\t")
 pmg = pd.read_csv(TABLES / "magma_panelapp.tsv", sep="\t").set_index("panel_id").P
 NAMES = {"DDG2P": "DDG2P (developmental disorders)"}
@@ -112,7 +112,7 @@ for r in pr[pr.q_primary < 0.05].sort_values("p_primary").itertuples():
     lines.append(f"| {NAMES.get(r.panel_name, r.panel_name)} | {int(r.n_genes_universe):,} | {int(r.obs_loci)}/"
                  f"{fexp(r.exp_primary)} ({ffold(r.fold_primary)}) | {fp(r.p_primary)} | {fp(r.q_primary)} | "
                  f"{fp(pmg.get(r.panel_id, np.nan), True)} | {gtxt} |")
-(OUT / "table3.md").write_text("\n".join(lines) + "\n")
+(OUT / "table2.md").write_text("\n".join(lines) + "\n")
 print((OUT / "table1.md").read_text())
 print((OUT / "table2.md").read_text())
 print((OUT / "table3.md").read_text())
