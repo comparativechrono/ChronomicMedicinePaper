@@ -191,7 +191,7 @@ def fig2():
     ax.grid(axis="x", color=GRID, lw=0.5); ax.set_axisbelow(True)
     h1 = ax.plot([], [], "o", mfc=S1, mec=S1, ms=4.4, label="FDR q < 0.05 within set family")[0]
     h3 = ax.plot([], [], "o", mfc=SURF, mec=S1, ms=4.4, label="FDR q ≥ 0.05")[0]
-    h4 = ax.plot([], [], "D", mfc=INK2, mec=INK2, ms=3.8, label="post hoc set (q not computed)")[0]
+    h4 = ax.plot([], [], "D", mfc=INK2, mec=INK2, ms=3.8, label="post hoc set (q not shown)")[0]
     ax.legend(handles=[h1, h3, h4], loc="upper left", bbox_to_anchor=(-1.0, -0.055), fontsize=6.5, ncol=3,
               handletextpad=0.3, title="Null loci matched on MAF, LD, gene count and distance",
               title_fontsize=6.5, alignment="left")

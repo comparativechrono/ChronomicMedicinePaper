@@ -15,7 +15,7 @@ to understand, diagnose and manage disease.
   little gene-level (MAGMA) support.
 * **Phenotype-specific convergence is modest.**
   * Genes for Mendelian disorders with sleep disturbance are over-represented, including among loci that contain
-    other dominant or neurodevelopmental disease genes. Most of these genes also cause neurodevelopmental
+    dominant or neurodevelopmental disease genes. Most of these genes also cause neurodevelopmental
     disorders, however, and their gene-level support is nominal.
   * In a post hoc analysis, 4 of 12 monoamine neurotransmitter disorder genes (*GCH1*, *DDC*, *DNAJC12*,
     *SLC18A2*) lie in chronotype loci; gene-level support is strongest for *DDC*.
