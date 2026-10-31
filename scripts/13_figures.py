@@ -41,7 +41,7 @@ plt.rcParams.update({
 
 def save(fig, name):
     for ext in ("pdf", "png"):
-        fig.savefig(FIGURES / f"{name}.{ext}", dpi=300, bbox_inches="tight", facecolor=SURF)
+        fig.savefig(FIGURES / f"{name}.{ext}", dpi=300, bbox_inches="tight", pad_inches=0.04, facecolor=SURF)
     plt.close(fig)
 
 
@@ -228,8 +228,8 @@ def fig5():
     B = pd.read_csv(TABLES / "burden_convergence.tsv", sep="\t")
     G = pd.read_csv(TABLES / "burden_gene_level.tsv", sep="\t", index_col=0)
     mg = pd.read_csv(INTERIM / "magma" / "chronotype.genes.out", sep=r"\s+").set_index("GENE")
-    fig = plt.figure(figsize=(7.2, 3.3))
-    ax = fig.add_axes([0.25, 0.16, 0.25, 0.74])
+    fig = plt.figure(figsize=(6.65, 3.3))   # <= 174 mm wide, the smallest common two-column maximum
+    ax = fig.add_axes([0.355, 0.16, 0.18, 0.74])
     sub = B[B.masks == "all masks"].iloc[::-1].reset_index(drop=True)
     for i, r in sub.iterrows():
         ax.plot([r.null_q025_neglog10p, r.null_q975_neglog10p], [i, i], color=GRID, lw=3.2, solid_capstyle="round")
@@ -240,17 +240,17 @@ def fig5():
         trim = f" ({fmt_p(r.p_mean_trimmed, perm=True)})" if r.p_mean_trimmed == r.p_mean_trimmed else ""
         ax.text(1.06, i, f"p {ptxt}{trim}", va="center", fontsize=6.4, color=INK2, transform=ax.get_yaxis_transform())
         lab = r.gene_group.replace(" in chronotype loci", " in loci").replace("Sleep-disturbance", "Sleep-disturbance") + f" (n={r.n_genes})"
-        ax.text(-0.04, i, lab, va="center", ha="right", fontsize=6.6, color=INK, transform=ax.get_yaxis_transform())
+        ax.text(-0.04, i, lab, va="center", ha="right", fontsize=6.4, color=INK, transform=ax.get_yaxis_transform())
     ax.set_yticks([]); ax.spines["left"].set_visible(False)
     ax.set_ylim(-0.6, len(sub) - 0.4)
     ax.set_xlabel("Mean −log$_{10}$ p, exome burden (chronotype)")
     ax.grid(axis="x", color=GRID, lw=0.5); ax.set_axisbelow(True)
-    ax.text(-1.05, len(sub) - 0.2, "A", fontsize=10, weight="bold", transform=ax.get_yaxis_transform())
-    ax.text(-0.85, -0.22, "Grey band: 95% range of CAF-matched random gene sets; tick: null mean. In brackets: p with the\n"
+    fig.text(0.005, 0.965, "A", fontsize=10, weight="bold")
+    ax.text(-1.75, -0.22, "Grey band: 95% range of CAF-matched random gene sets; tick: null mean. In brackets: p with the\n"
             "three most significant genes removed from the group and from every matched set (PER2, PER3, FBXL3 for the\n"
             "Mendelian and sleep groups).", fontsize=5.8, color=INK2, transform=ax.transAxes, va="top")
 
-    axb = fig.add_axes([0.72, 0.16, 0.26, 0.74])
+    axb = fig.add_axes([0.765, 0.16, 0.205, 0.74])
     d = G.join(mg.P.rename("magma_p"), how="inner")
     d["x"] = -np.log10(d.magma_p).clip(upper=16)
     d["y"] = -np.log10(d.p_burden).clip(upper=16)
@@ -270,9 +270,9 @@ def fig5():
     axb.set_xlabel("Common variants: MAGMA −log$_{10}$ p")
     axb.set_ylabel("Rare variants: burden −log$_{10}$ p")
     axb.set_xlim(0, 16.8); axb.set_ylim(0, 15)
-    axb.legend(loc="lower left", bbox_to_anchor=(0.0, 1.01), fontsize=6, handletextpad=0.2, borderaxespad=0.0,
+    axb.legend(loc="lower left", bbox_to_anchor=(-0.32, 1.01), fontsize=6, handletextpad=0.2, borderaxespad=0.0,
                markerscale=1.2)
-    axb.text(-0.25, 1.2, "B", fontsize=10, weight="bold", transform=axb.transAxes)
+    fig.text(0.68, 0.965, "B", fontsize=10, weight="bold")
     save(fig, "Fig5_rare_common_convergence")
 
 
@@ -322,8 +322,9 @@ def fig3():
 
 # ======================================================================== Fig 4
 def fig4():
-    fig, ax = plt.subplots(figsize=(7.2, 3.6))
-    ax.set_xlim(0, 104); ax.set_ylim(-11.5, 40); ax.axis("off")
+    fig = plt.figure(figsize=(5.7, 3.0))    # same drawing scale as before; legend text wrapped to fit the width
+    ax = fig.add_axes([0.01, 0.01, 0.98, 0.98])
+    ax.set_xlim(0, 104); ax.set_ylim(-14.6, 40); ax.axis("off")
     HIT = {"GCH1", "DDC", "DNAJC12", "SLC18A2"}
 
     def node(x, y, txt, w=11, h=5.2, kind="metab"):
@@ -361,10 +362,10 @@ def fig4():
     ax.add_patch(FancyArrowPatch((20, 23.2), (20, y1 - 3), arrowstyle="-|>", mutation_scale=6, lw=0.7, color=S2))
     ax.add_patch(FancyArrowPatch((20, 18.8), (20, y2 + 3), arrowstyle="-|>", mutation_scale=6, lw=0.7, color=S2))
     ax.add_patch(plt.Rectangle((2, -3.9), 2.4, 2.4, fc="#fdf3ee", ec=S2, lw=1.2))
-    ax.text(5.5, -2.7, "gene inside a chronotype GWAS locus (r² ≥ 0.6 interval); all four are inherited monoamine "
+    ax.text(5.5, -1.6, "gene inside a chronotype GWAS locus (r² ≥ 0.6 interval); all four are inherited monoamine "
             "neurotransmitter disorder genes\n(GTPCH deficiency / dopa-responsive dystonia, AADC deficiency, "
-            "DNAJC12 deficiency, VMAT2 deficiency). Grey: context only; no melatonin-pathway gene lies in a locus.",
-            fontsize=6.0, color=INK2, va="center")
+            "DNAJC12 deficiency, VMAT2 deficiency).\nGrey: context only; no melatonin-pathway gene lies in a locus.",
+            fontsize=6.0, color=INK2, va="top")
     ev = {g: K_per_gene.get(g, {}) for g in ("DDC", "GCH1", "DNAJC12", "SLC18A2")}
 
     def l2g(g):
@@ -375,8 +376,8 @@ def fig4():
              f"DNAJC12: {l2g('DNAJC12')}; nearest gene SIRT1 (itself a circadian regulator)",
              "SLC18A2: no gene-level support beyond locus overlap",
              "Exome burden: none of the four (p ≥ 0.12)"]
-    ax.text(1.0, -9.0, "Gene-level support:  " + "   ·   ".join(lines[:2]) + "\n" + "   ·   ".join(lines[2:]),
-            fontsize=6.0, color=INK2, va="center")
+    ax.text(1.0, -8.3, "Gene-level support:  " + "   ·   ".join(lines[:2]) + "\n" + "   ·   ".join(lines[2:4]) + "\n"
+            + lines[4], fontsize=6.0, color=INK2, va="top")
     save(fig, "Fig4_monoamine_pathway")
 
 
